@@ -148,7 +148,7 @@
 |name|string|null :false|
 
 ### Association
-- has_many :item
+- has_many :items
 
 ## caterories table
 
@@ -157,7 +157,7 @@
 |name|string|null :false|
 
 ### Association
--has_many :category_children
+-has_many :category_childrens
 
 ## category_children table
 
@@ -167,7 +167,7 @@
 |category_id|references|fareign_key: true, null :false|
 
 ### Association
-- has_many :category_subchildren
+- has_many :category_subchildrens
 - belongs_to :category
 
 ## category_subchildren table
@@ -208,7 +208,7 @@
 
 なし
 
-## shipping_day table
+## shipping_days table
 |Column|Type|Options|
 |------|----|-------|
 |shipping_day|string|null :false|
