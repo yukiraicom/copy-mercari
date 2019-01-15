@@ -1,24 +1,98 @@
-# README
+# DB
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|unique: true|
+|profile|string|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kane|string|null: false|
+|postal_code|integer|null: false|
+|prefecture|string|null: false|
+|city|string|null: false|
+|street|string|null: false|
+|building_name|string|null: false|
+|tel|integer|null: false|
+|card_number|integer|null: false|
+|expiration_month|integer|null: false|
+|expiration_year|integer|null: false|
+|security_coder|integer|null: false|
 
-* Ruby version
 
-* System dependencies
+### Association
+has_many :items
 
-* Configuration
+## items table
 
-* Database creation
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null :false, index :true|
+|condition|integer|null :false|
+|brand_id|references|foreign_key: true, null :false|
+|user_id|references|foreign_key: true, null :false|
+|category_subchild_id|references|foreign_key: true, null :false|
+|price|integer|null :false|
+|description|string|null :false|
+|status|string|null :false|
 
-* Database initialization
+### Association
+- belongs_to :brand
+- belongs_to :user
+- belongs_to :category_subchild
+- has_many :images
 
-* How to run the test suite
+## brands table
 
-* Services (job queues, cache servers, search engines, etc.)
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null :false|
 
-* Deployment instructions
+### Association
+- has_many :items
 
-* ...
+## caterories table
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null :false|
+
+### Association
+- has_many :category_childrens
+
+## category_children table
+
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null :false|
+|category_id|references|foreign_key: true, null :false|
+
+### Association
+- has_many :category_subchildrens
+- belongs_to :category
+
+## category_subchildren table
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null :false|
+|category_child_id|references|foreign_key: true, null :false|
+
+### Association
+- belongs_to :category_child
+- has_many :items
+
+## images table
+
+|Column|Type|Options|
+|------|----|-------|
+|image|string|null :false|
+|item_id|references|foreign_key: true, null :false|
+
+### Association
+
+- belongs_to :item
