@@ -9,9 +9,9 @@
 |profile|string|
 
 ### Association
-has_many :items
-has_one :adress
-has_one :credit
+-has_many :items
+-has_one :adress
+-has_one :credit
 
 ## adress tables
 |Column|Type|Options|
