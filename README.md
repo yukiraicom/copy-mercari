@@ -7,6 +7,16 @@
 |nickname|string|null: false|
 |email|string|null: false|unique: true|
 |profile|string|
+
+### Association
+has_many :items
+has_one :adress
+has_one :credit
+
+## adress tables
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null:false|
 |first_name|string|null: false|
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
@@ -17,14 +27,21 @@
 |street|string|null: false|
 |building_name|string|null: false|
 |tel|integer|null: false|
+
+## Association
+- belongs_to :user
+
+## credit table
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false|
 |card_number|integer|null: false|
 |expiration_month|integer|null: false|
 |expiration_year|integer|null: false|
 |security_coder|integer|null: false|
 
-
-### Association
-has_many :items
+## Associaion
+- belongs_to :user
 
 ## items table
 
