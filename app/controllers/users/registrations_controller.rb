@@ -5,9 +5,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    # super
+    # binding.pry
+  end
+
+  def new2
+    binding.pry
+  end
 
   # POST /resource
   # def create
@@ -56,7 +61,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_inactive_sign_up_path_for(resource)
+    # super(resource)
+    users_sign_up2_path
+  end
 end
