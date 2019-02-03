@@ -38,7 +38,7 @@
 |card_number|integer|null: false|
 |expiration_month|integer|null: false|
 |expiration_year|integer|null: false|
-|security_coder|integer|null: false|
+|security_code|integer|null: false|
 
 ## Associaion
 - belongs_to :user
