@@ -27,7 +27,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
       building_name: user_params[:building_name],
       tel: user_params[:tel]
       )
+    redirect_to users_sign_up3_path
+  end
 
+  def new3
+    @credit = Credit.new
+  end
+
+  def create3
+    Credit.create(
+      user_id: current_user.id,
+      card_number: credit_params[:card_number].to_i,
+      expiration_month: credit_params[:expiration_month].to_i,
+      expiration_year: credit_params[:expiration_year].to_i,
+      security_code: credit_params[:security_code].to_i
+    )
+    redirect_to users_sign_up_fin_path
+  end
+
+  def fin
   end
 
   # POST /resource
@@ -86,5 +104,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:adress)
+  end
+  
+  def credit_params
+    params.require(:credit)
   end
 end
