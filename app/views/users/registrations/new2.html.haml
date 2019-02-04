@@ -1,0 +1,10 @@
+%p 住所入力
+=form_for(@user_adress, url: users_sign_up2_path(@user_adress)) do |f|
+  .field
+    = f.label :お名前
+    %br/
+    = f.text_field :first_name, autofocus: true
+    %br/
+    = f.text_field :last_name
+    %br/
+    =f.submit
