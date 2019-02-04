@@ -10,6 +10,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def new2
+    @user_adress = Adress.new
+  end
+
+  def create2
+    Adress.create(
+      user_id: current_user.id, 
+      first_name: user_params[:first_name], 
+      last_name: user_params[:last_name], 
+      first_name_kana: user_params[:first_name_kana],
+      last_name_kana: user_params[:last_name_kana],
+      postal_code: user_params[:postal_code],
+      prefecture: user_params[:prefecture],
+      city: user_params[:city],
+      street: user_params[:street],
+      building_name: user_params[:building_name],
+      tel: user_params[:tel]
+      )
+
   end
 
   # POST /resource
@@ -64,4 +82,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   #   users_sign_up2_path
   # end
+  private
+
+  def user_params
+    params.require(:adress)
+  end
 end
