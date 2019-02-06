@@ -5,11 +5,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  def new2
+  def adress
     @user_adress = Adress.new
   end
 
-  def create2
+  def adress_create
     Adress.create(
       user_id: current_user.id, 
       first_name: user_params[:first_name], 
@@ -26,11 +26,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to users_sign_up3_path
   end
 
-  def new3
+  def credit
     @credit = Credit.new
   end
 
-  def create3
+  def credit_create
     Credit.create(
       user_id: current_user.id,
       card_number: credit_params[:card_number].to_i,
