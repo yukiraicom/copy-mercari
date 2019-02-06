@@ -1,0 +1,40 @@
+%p 住所入力
+=form_for(@user_adress, url: users_sign_up2_path(@user_adress)) do |f|
+  .field
+    = f.label :お名前
+    %br/
+    = f.text_field :first_name, autofocus: true
+    %br/
+    = f.text_field :last_name
+    %br/
+    = f.label :お名前カナ
+    %br/
+    = f.text_field :first_name_kana, autofocus: true
+    %br/
+    = f.text_field :last_name_kana
+    %br/
+    = f.label :郵便番号
+    %br/
+    = f.text_field :postal_code
+    %br/
+    = f.label :都道府県
+    %br/
+    = f.select :prefecture, Adress.prefectures.keys.to_a
+    %br/
+    = f.label :市区町村
+    %br/
+    = f.text_field :city
+    %br/
+    = f.label :番地
+    %br/
+    = f.text_field :street
+    %br/
+    = f.label :建物名
+    %br/
+    = f.text_field :building_name
+    %br/
+    = f.label :電話番号
+    %br/
+    = f.text_field :tel
+    %br/
+    =f.submit
