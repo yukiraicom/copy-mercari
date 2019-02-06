@@ -1,16 +1,19 @@
 class Adress < ApplicationRecord
   belongs_to :user
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :first_name_kana, presence: true
-  validates :last_name_kana, presence: true
-  validates :postal_code, presence: true
-  validates :prefecture, presence: true #enumだからstringになっちゃう？
-  validates :city, presence: true 
-  validates :street, presence: true
-  validates :building_name, presence: true
-  validates :tel, presence: true
+  with_option presence: true do
+    validates :first_name
+    validates :last_name
+    validates :first_name_kana
+    validates :last_name_kana
+    validates :postal_code
+    validates :prefecture #enumだからstringになっちゃう？
+    validates :city
+    validates :street
+    validates :building_name
+    validates :tel
+  end
+  
 
   enum prefecture: {
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
