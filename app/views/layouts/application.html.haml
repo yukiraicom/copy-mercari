@@ -11,5 +11,5 @@
     -if user_signed_in?
       %p #{current_user.nickname}がログイン中
       =link_to "log out", destroy_user_session_path, method: "delete"
-    .content
+  .content
     = yield
