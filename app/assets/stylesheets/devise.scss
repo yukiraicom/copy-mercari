@@ -29,6 +29,19 @@
       margin: 30px;
     }
   }
+
+  .new_adress{
+    margin-top: 35px;
+    .field{
+      margin-top: 25px;
+    }
+    .actions input{
+      background: red;
+      color: white;
+      padding: 10px calc(100% - 300px);
+      margin: 30px;
+    }
+  }
   // &__signup{
   // }
   // &__signin{
