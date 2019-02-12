@@ -1,3 +1,41 @@
-.logo img{
-  width: 185px
+.logo{
+  margin: 20px;
+  &__signin{
+    text-align: center;
+  }
 }
+.logo img{   
+  width: 185px;
+}
+
+.devise-content{
+  text-align: center;
+  background: white;
+  width: calc( 100% - 80px);
+  margin: auto;
+  & h2{
+    padding: 20px;
+    border-bottom: groove 0.1px;
+  }
+  .new_user{
+    margin-top: 35px;
+    .field{
+      margin-top: 25px;
+    }
+    .actions input{
+      background: red;
+      color: white;
+      padding: 10px calc(100% - 300px);
+      margin: 30px;
+    }
+  }
+  // &__signup{
+  // }
+  // &__signin{
+
+  // }
+}
+
+// .devise-content h2{
+  
+
