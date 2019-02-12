@@ -1,7 +1,7 @@
 class Adress < ApplicationRecord
   belongs_to :user
 
-  with_option presence: true do
+  with_options presence: true do
     validates :first_name
     validates :last_name
     validates :first_name_kana

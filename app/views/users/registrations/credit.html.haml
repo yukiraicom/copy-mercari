@@ -1,27 +1,34 @@
-%h2 お支払い方法
-= form_for(@credit, url: users_sign_up3_path(@credit)) do |f|
-  .field
-    = f.label :カード番号
-    %br/
-    = f.text_field :card_number, autofocus: true
-    %br/
-    = f.label :有効期限
-    %br/
-    = f.select :expiration_month, [["01", 01],
-    ["02", 2],
-    ["03", 3],
-    ["04", 4],
-    ["05", 5],
-    ["06", 6],
-    ["07", 7],
-    ["08", 8],
-    ["09", 9],
-    ["10", 10],
-    ["11", 11],
-    ["12", 12]]
-    %br/
-    = f.select :expiration_year, [["18", 18], ["19", 19]]
-    %br/
-    = f.label :security_code
-    %br/
-    =f.submit
+= render 'users/logo'
+.devise-content
+  %h2 お支払い方法
+  = form_for(@credit, url: users_sign_up3_path(@credit)) do |f|
+    .field
+      = f.label :カード番号
+      %br/
+      = f.text_field :card_number, placeholder: "半角数字のみ", autofocus: true
+      %br/
+      = f.label :有効期限
+      %br/
+      = f.select :expiration_month, [["01", 01],
+      ["02", 2],
+      ["03", 3],
+      ["04", 4],
+      ["05", 5],
+      ["06", 6],
+      ["07", 7],
+      ["08", 8],
+      ["09", 9],
+      ["10", 10],
+      ["11", 11],
+      ["12", 12]]
+      月
+      %br/
+      = f.select :expiration_year, [["18", 18], ["19", 19]] 
+      年
+      %br/
+      = f.label :セキュリティコード
+      %br/
+      = f.text_field :security_code, placeholder: "カード背面４桁もしくは３桁の番号"
+
+    .actions
+      =f.submit "次へ進む"
