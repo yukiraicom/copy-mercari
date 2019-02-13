@@ -25,7 +25,7 @@
     .actions input{
       background: red;
       color: white;
-      padding: 10px calc(100% - 300px);
+      padding: 10px calc(50% - 300px);
       margin: 30px;
     }
   }
@@ -57,8 +57,9 @@
     display: block;
     background: red;
     color: white;
-    padding: 10px calc(100% - 300px);
+    padding: 10px calc(50% - 300px);
     text-decoration: none ;
+    margin: 0 275px;
   }
   .fin-field{
     padding: 30px;
