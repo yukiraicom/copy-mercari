@@ -1,3 +1,60 @@
 .header{
-  border: 1px solid black;
+  background-color: white;
+  &__inner{
+    background-color: white;
+    margin: 0 auto;
+    width: calc(100% - 100px);
+    .clearfix{
+      & img{
+        width: 150px;
+        float: left;
+        margin: 10px;
+      }
+      & form{
+        float: left;
+        width: calc(100% - 195px);
+        margin: 15px 10px;
+        padding-right: 5px; 
+        & input{
+          width: 100%;
+          // width: calc(100% - 150px);
+        }
+      }
+    }
+    .clearfix:after{
+      clear: both;
+      display: block;
+      content: "";
+    }
+    &__nav{
+      & p{
+        float: left;
+        margin: 5px;
+      }
+      &__session{
+        float: right;
+        & a{
+          display: block;
+          float: right;
+          margin: 5px;
+          background: red;
+          padding: 5px;
+          color: white;
+          text-decoration: none;
+          border-radius: 10px;
+        }
+        &__regist{
+          background: white!important;
+          color: blue!important;
+          border: 1px solid #0099e8;
+          color: #0099e8!important;
+        }
+      }
+    }
+    &__nav::after{
+      clear: both;
+      display: block;
+      content: "";
+    }
+  }
 }
