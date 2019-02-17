@@ -6,6 +6,11 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    -# = stylesheet_link_tag "css/owl.carousel.css"
+    -# = stylesheet_link_tag "css/owl.theme.css"
+    -# = javascript_include_tag "js/owl.carousel.js"
+
+
   %body
   - if controller.controller_name != "sessions" && controller.controller_name != "registrations"
     .header
