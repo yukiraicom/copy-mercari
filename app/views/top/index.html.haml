@@ -1,10 +1,16 @@
-%p top/index
 %ul.owl-carousel.owl-theme
   %li
-    = image_tag("logo.svg")
+    = image_tag("1.jpg")
   %li
-    = image_tag("logo.svg")
+    = image_tag("2.jpg")
   %li
-    = image_tag("logo.svg")
-  %li
-    %p a
+    = image_tag("3.jpg")
+.all-item
+  %h2 商品一覧
+  .all-item__box
+    = render partial = "item"
+    = render partial = "item"
+    = render partial = "item"
+    = render partial = "item"
+    = render partial = "item"
+    = render partial = "item"
