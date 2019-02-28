@@ -58,6 +58,7 @@ gem 'pry'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'haml-rails'
+gem 'font-awesome-rails'
 group :test do
   gem 'faker'
 end
