@@ -15,7 +15,7 @@
         .clearfix
           = image_tag("logo.svg")
           = form_tag  "#" do
-            = text_field :item, :name
+            = text_field :item, :name, placeholder: "キーワードから探す"
         .header__inner__nav
           %p カテゴリーから探す
           %p ブランドから探す
