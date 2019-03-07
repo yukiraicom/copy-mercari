@@ -4,7 +4,7 @@
     background-color: white;
     margin: 0 auto;
     width: calc(100% - 100px);
-    .clearfix{
+    &__top{
       & img{
         width: 150px;
         float: left;
@@ -19,11 +19,9 @@
           width: 100%;
         }
       }
-    }
-    .clearfix:after{
-      clear: both;
-      display: block;
-      content: "";
+      &:after{
+        @include clearfix-after;
+      }
     }
     &__nav{
       & p{
@@ -51,10 +49,8 @@
         }
       }
     }
-    &__nav::after{
-      clear: both;
-      display: block;
-      content: "";
+    &__nav:after{
+      @include clearfix-after;
     }
   }
 }

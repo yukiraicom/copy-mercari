@@ -38,11 +38,7 @@
       }
     }
     &:after{
-      clear: both;
-      display: block;
-      content: "";
-      visibility: hidden;
-      height: 0;
+      @include clearfix-after;
     }
   }
 }
