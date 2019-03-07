@@ -11,7 +11,7 @@
   - if controller.controller_name != "sessions" && controller.controller_name != "registrations"
     .header
       .header__inner
-        .clearfix
+        .header__inner__top
           = image_tag("logo.svg")
           = form_tag  "#" do
             = text_field :item, :name, placeholder: "キーワードから探す"
