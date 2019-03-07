@@ -1,3 +1,44 @@
-// Place all the styles related to the top controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.all-item{
+  width: 660px;
+  margin: 0 auto;
+  & h2{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+  }
+  & a{
+    float: left;
+  }
+  &__box{
+    & a{
+      margin-left: 10px;
+      margin-right: 10px;
+      text-decoration: none;
+      color: black;
+    }
+    &__photo{
+      & img{
+        width: 200px;
+      }
+    }
+    &__body{
+      padding: 16px;
+      &__num{
+        &__price{
+          float: left;
+          font-size: 16px;
+        }
+        &__likes{
+          float:  right;
+        }
+        &__tax{
+          font-size: 10px;
+          clear: both;
+        }
+      }
+    }
+    &:after{
+      @include clearfix-after;
+    }
+  }
+}

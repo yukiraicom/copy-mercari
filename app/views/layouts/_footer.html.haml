@@ -1,0 +1,50 @@
+%footer.footer
+  %nav
+    %ul
+      %li.footer__cell
+        %h2.footer__head メルカリについて
+        %ul
+          %li
+            = link_to('会社概要（運営会社）', "#")
+          %li
+            = link_to('プライバシーポリシー', "#")
+          %li
+            = link_to('採用情報', "#")
+      %li.footer__cell
+        %h2.footer__head メルカリを見る
+        %ul
+          %li
+            = link_to('カテゴリー一覧', "#")
+          %li
+            = link_to('ブランド一覧', "#")
+          %li
+            = link_to('公式Twitter', "#")
+      %li.footer__cell
+        %h2.footer__head ヘルプ＆ガイド
+        %ul
+          %li
+            = link_to('メルカリガイド', "#")
+          %li
+            = link_to('おしらせ', "#")
+          %li
+            = link_to('メルカリボックス', "#")
+      %li.footer__cell
+        %h2.footer__head 国
+        %ul
+          %li
+            = link_to("#") do
+              = image_tag 'flag_us', width: '22'
+              United States
+          %li
+            = link_to("#") do
+              = image_tag 'flag_uk', width: '22'
+              United Kingdom         
+          %li
+            = link_to("#") do
+              = image_tag 'flag_jp', width: '22'
+              日本  
+  = link_to root_path, class: "footer__logo" do
+    = image_tag '/assets/logo-white.svg'
+  %p.footer__copyright
+    %small © 2019 Mercari
+    

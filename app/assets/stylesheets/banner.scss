@@ -1,0 +1,50 @@
+.banner{
+    height: 260px;
+    background: url(banner.jpg);
+    &__pc{
+      position: relative;
+      height: 100%;
+      margin: 0 auto;
+      width: 680px;
+      color: white;
+      &__inner{
+        position: absolute;
+        top: 30%;
+        float: left;
+        & h2{
+          font-size: 20px;
+        }
+       & p{
+         font-size: 28px;
+       }
+       &__icon{
+         position: relative;
+         &__mercari{
+           position: absolute;
+           left: 10px;
+           width: 58px!important;
+           height: 58px!important;
+         }
+         &__app-store{
+           left: 80px;
+           top: 10px;
+           width: 130px!important;
+         }
+         &__google-play{
+          left: 220px;
+          top: 10px;
+          width: 130px!important;
+         }
+       }
+      }
+      & img{
+        float: left;
+        width: 300px;
+        position: absolute;
+        right: 0;
+      }
+      &:after{
+        @include clearfix-after;
+      }
+    }
+  } 

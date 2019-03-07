@@ -1,0 +1,42 @@
+.footer{
+  padding: 60px 0 ;
+  text-align: center;
+  & nav{
+    width: 650px;
+    margin: 0 auto;
+  }
+  &__cell{
+    display: inline-block;
+    width: 23%;
+    & a{
+      font-size: 12px;
+      text-decoration: none;
+      color: white;
+    }
+  }
+  color: white;
+    padding: 60px 0;
+    background: black;
+    &__logo{
+      display: block;
+      margin: 40px 0 0;
+      text-align: center;
+    }
+    &__copyright{
+      margin: 8px 0 0;
+      text-align: center;
+    }
+    &__cell{
+      vertical-align: top;
+      & li{
+        margin: 13px 0 0;
+      }
+      & img{
+        margin: 0 8px 0 0;
+        vertical-align: middle;
+      }
+      & a{
+        display: block;
+      }
+    }
+}
