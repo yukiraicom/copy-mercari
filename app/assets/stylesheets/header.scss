@@ -24,12 +24,26 @@
       }
     }
     &__nav{
-      & p{
+      &-img{
+        width: 32px;
+        height: 32px;
+        vertical-align: middle;
+      }
+      &__p{
         float: left;
         margin: 5px;
+        line-height: 250%;
       }
-      &__session{
+      &__right{
+        list-style: none;
         float: right;
+        &__li{
+          display: inline-block;
+          vertical-align: middle;
+          &__a {
+            color: black;
+          }
+        }
         & a{
           display: block;
           float: right;
