@@ -5,3 +5,13 @@
   visibility: hidden;
   height: 0;
 }
+@mixin content-tab{
+ line-height: 72px;
+ text-align: center;
+ display: inline-block;
+ width: 49.5%;
+}
+@mixin content-tab-active{
+ background-color: white;
+ border-top: 2px solid #ea352d;
+}
