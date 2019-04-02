@@ -2,6 +2,7 @@
     height: 1200px; //temporary
     width: 880px;
     margin: 40px auto 0;
+    padding: 0 0 40px;
     &__content{
       height: 1200px; //temporary
       width: 600px;
@@ -36,14 +37,10 @@
       }
       &__tab{
         &__list{
-          line-height: 72px;
-          text-align: center;
-          display: inline-block;
-          width: 49.5%;
-          &--active{
-            background-color: white;
-            border-top: 2px solid #ea352d;
-          }
+         @include content-tab;
+         &--active{
+          @include content-tab-active;
+         }
         }
         &__content{
           background-color: white;
@@ -100,16 +97,33 @@
           }
         }
         &__trading{
-			    margin: 40px 0 0;
+          margin: 40px 0 0;
           background: white;
           &--head{
             padding: 0 16px;
             background: $trading-tab-gray;
             font-size: 16px;
             line-height: 72px;
-           }
           }
-         }
+          &__li{
+            @include content-tab;
+            &--active{
+              @include content-tab-active;
+            }
+          }
+          &--content{
+            &--item{
+              display: none;
+              &--active{
+                display: block;
+              }
+              &--notfound{
+                @include no-item
+              }
+            }
+          }
+        }
+      }
         }
         &__side{
          height: 1200px; //temporary
