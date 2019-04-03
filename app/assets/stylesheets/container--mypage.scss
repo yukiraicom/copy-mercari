@@ -37,10 +37,10 @@
       }
       &__tab{
         &__list{
-         @include content-tab;
-         &--active{
-          @include content-tab-active;
-         }
+          @include content-tab;
+          &--active{
+            @include content-tab-active;
+          }
         }
         &__content{
           background-color: white;
@@ -51,12 +51,12 @@
             }
             &__list{
               position: relative;
-              border-bottom: 1px solid #eee;
+              border-bottom: 1px solid $backcolor;
               &__a{
                 display: block;
                 min-height: 50px;
                 padding: 16px;
-                color: #333;
+                color: black;
                 text-decoration: none;
                 position: relative;
                 &__img{
@@ -75,13 +75,13 @@
               &__go{
               	padding: 16px;	
               	&__a{
-              	display: block;
-              	height: 56px;
-              	margin: 0 auto;
-              	background: #eee;
-              	color: #333;
-              	line-height: 56px;
-              	text-align: center;
+              	  display: block;
+              	  height: 56px;
+              	  margin: 0 auto;
+              	  background: white;
+              	  color: #333;
+              	  line-height: 56px;
+              	  text-align: center;
               	}
               }
               &__body{
@@ -98,7 +98,6 @@
         }
         &__trading{
           margin: 40px 0 0;
-          background: white;
           &--head{
             padding: 0 16px;
             background: $trading-tab-gray;
@@ -112,6 +111,7 @@
             }
           }
           &--content{
+            background: white;
             &--item{
               display: none;
               &--active{
@@ -125,33 +125,33 @@
         }
       }
     }
-        &__side{
-          height: 1200px; //temporary
-          width: 250px;
-          float: left;
-          margin: 0 30px 0 0;
-          &__list{
-            &__item{
-              background: white;
-              font-size: 14px;
-              text-decoration: none;
-              position: relative;
-              display: block;
-              padding: 10px;
-              color: #333;
-              border-top: 1px solid #eee;
-            }
-            &__arrow{
-              position: absolute;
-              top: 30%;
-              right: 16px;
-            }
-          }
-         &__head{
-          margin: 40px 0 0;
-         }
-        }
-        &:after{
-         @include clearfix-after;
-        }
-       }
+  &__side{
+    height: 1200px; //temporary
+    width: 250px;
+    float: left;
+    margin: 0 30px 0 0;
+    &__list{
+      &__item{
+        background: white;
+        font-size: 14px;
+        text-decoration: none;
+        position: relative;
+        display: block;
+        padding: 10px;
+        color: #333;
+        border-top: 1px solid #eee;
+      }
+      &__arrow{
+        position: absolute;
+        top: 30%;
+        right: 16px;
+      }
+    }
+   &__head{
+   margin: 40px 0 0;
+   }
+  }
+  &:after{
+   @include clearfix-after;
+  }
+}
