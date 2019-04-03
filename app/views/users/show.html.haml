@@ -1,0 +1,47 @@
+.container--mypage
+  .container--mypage__content
+    .container--mypage__content__icon
+      = link_to "#", class: "container--mypage__content__icon__a" do
+        = image_tag "chara.jpg", class: "container--mypage__content__icon__a__img"
+        %h2.container--mypage__content__icon__a__username UserName
+        .container--mypage__content__icon__a__number
+          評価
+          %span 10
+        .container--mypage__content__icon__a__number
+          出品数
+          %span 10
+    .container--mypage__content__tab
+      %ul
+        %li.container--mypage__content__tab__list.container--mypage__content__tab__list--active<
+          %h3 お知らせ
+        %li.container--mypage__content__tab__list<
+          %h3 やることリスト
+      .container--mypage__content__tab__content
+        %ul.container--mypage__content__tab__content__pane.container--mypage__content__tab__content__pane--active
+          = render partial: "notice"
+          = render partial: "notice"
+          = render partial: "notice"
+          %li.container--mypage__content__tab__content__pane__list__go<
+            =link_to "一覧を見る", "#", class: "container--mypage__content__tab__content__pane__list__go__a"
+
+        %ul.container--mypage__content__tab__content__pane
+          = render partial: "todo"
+          = render partial: "todo"
+          %li.container--mypage__content__tab__content__pane__list__go<
+            =link_to "一覧を見る", "#", class: "container--mypage__content__tab__content__pane__list__go__a"
+      
+      .container--mypage__content__tab__trading
+        %h2.container--mypage__content__tab__trading--head 購入した商品
+        %ul
+          %li.container--mypage__content__tab__trading__li.container--mypage__content__tab__trading__li--active<
+            %h3 取引中
+          %li.container--mypage__content__tab__trading__li<
+            %h3 過去の取引
+        .container--mypage__content__tab__trading--content
+          %ul.container--mypage__content__tab__trading--content--item.container--mypage__content__tab__trading--content--item--active
+            %li.container--mypage__content__tab__trading--content--item--notfound 取引中のアイテムがありません
+          %ul.container--mypage__content__tab__trading--content--item 
+            %li.container--mypage__content__tab__trading--content--item--notfound 過去の取引はありません
+  .container--mypage__side
+    = render partial: "mypage_side"
+

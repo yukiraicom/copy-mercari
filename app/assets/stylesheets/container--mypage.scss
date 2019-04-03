@@ -1,0 +1,155 @@
+.container--mypage{
+  width: 880px;
+  margin: 40px auto 0;
+  padding: 0 0 40px;
+  &__content{
+    width: 600px;
+    float: right;
+    &__icon{
+      text-align: center;
+      position: relative;
+      height: 160px;
+      padding: 20px;
+      background: url(user-bg.jpg);
+      &__a{
+        text-decoration: none;
+        color: black;
+        display: block;
+        position: absolute;
+        top: 20%;
+        left: 0;
+        right: 0;
+        &__img{
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+        }
+        &__username{
+          font-size: 14px;
+        }
+        &__number{
+          display: inline-block;
+          font-size: 14px;
+        }
+      }
+    }
+    &__tab{
+      &__list{
+        @include content-tab;
+        &--active{
+          @include content-tab-active;
+        }
+      }
+      &__content{
+        background-color: white;
+        &__pane{
+          display: none;
+          &--active{
+            display: block;
+          }
+          &__list{
+            position: relative;
+            border-bottom: 1px solid $backcolor;
+            &__a{
+              display: block;
+              min-height: 50px;
+              padding: 16px;
+              color: black;
+              text-decoration: none;
+              position: relative;
+              &__img{
+                position: absolute;
+                top: 17px;
+                left: 17px;
+                width: 48px;
+                height: 48px;
+              }
+              &__arrow{
+                position: absolute;
+                top: 35%;
+                right: 16px;
+              }
+            }
+            &__go{
+              padding: 16px;
+            	&__a{
+            	  display: block;
+            	  height: 56px;
+            	  margin: 0 auto;
+            	  background: white;
+            	  color: #333;
+            	  line-height: 56px;
+            	  text-align: center;
+            	}
+            }
+            &__body{
+              margin: 0 40px 0 68px;
+              &__text{
+                line-height: 1.5;
+              }
+              &__icon{
+                margin: 0 8px 0 0;
+              }
+            }
+          }
+        }
+      }
+      &__trading{
+        margin: 40px 0 0;
+        &--head{
+          padding: 0 16px;
+          background: $trading-tab-gray;
+          font-size: 16px;
+          line-height: 72px;
+        }
+        &__li{
+          @include content-tab;
+          &--active{
+            @include content-tab-active;
+          }
+        }
+        &--content{
+          background: white;
+          &--item{
+            display: none;
+            &--active{
+              display: block;
+            }
+            &--notfound{
+              @include no-item
+            }
+          }
+        }
+      }
+    }
+  }
+  &__side{
+    width: 250px;
+    float: left;
+    margin: 0 30px 0 0;
+    &__list{
+      &__item{
+        background: white;
+        font-size: 14px;
+        text-decoration: none;
+        position: relative;
+        display: block;
+        padding: 10px;
+        color: #333;
+        border-top: 1px solid #eee;
+      }
+      &__arrow{
+        position: absolute;
+        top: 30%;
+        right: 16px;
+      }
+    }
+    &__head{
+      margin: 40px 0 0;
+    }
+  }
+  &:after{
+    @include clearfix-after;
+  }
+}
+
