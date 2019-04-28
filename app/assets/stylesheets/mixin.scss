@@ -5,3 +5,23 @@
   visibility: hidden;
   height: 0;
 }
+@mixin content-tab{
+ line-height: 72px;
+ text-align: center;
+ display: inline-block;
+ width: 49.5%;
+}
+@mixin content-tab-active{
+ background-color: white;
+ border-top: 2px solid #ea352d;
+}
+@mixin no-item{
+ background:url(/assets/logo-gray-icon.svg);
+ padding: 160px 0 60px;
+ background-size: 78px 85px;
+ background-repeat: no-repeat;
+ background-position: center 40px;
+ text-align: center;
+ font-size: 16px;
+ color: $no-item;
+}
