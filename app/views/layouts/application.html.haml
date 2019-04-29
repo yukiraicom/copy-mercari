@@ -12,7 +12,8 @@
     .header
       .header__inner
         .header__inner__top
-          = image_tag("logo.svg")
+          = link_to root_path do
+            = image_tag("logo.svg")
           = form_tag  "#" do
             = text_field :item, :name, placeholder: "キーワードから探す"
         .header__inner__nav
