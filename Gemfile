@@ -62,3 +62,5 @@ gem 'font-awesome-rails'
 group :test do
   gem 'faker'
 end
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
