@@ -1,6 +1,14 @@
 - if controller_name != 'sessions'
   = link_to "Log in", new_session_path(resource_name)
   %br/
+.devise-content__sns
+  = link_to user_facebook_omniauth_authorize_path, class: "devise-content__sns__facebook" do
+    = fa_icon "facebook-official", class: "fa-2x devise-content__sns__facebook__icon"
+    %p Facebookでログイン
+  = link_to user_google_oauth2_omniauth_authorize_path, class: "devise-content__sns__google" do
+    = image_tag "google.svg", class: "fa-2x devise-content__sns__google__icon" 
+    %p Googleでログイン
+  %br
 - if devise_mapping.registerable? && controller_name != 'registrations'
   = link_to "Sign up", new_registration_path(resource_name)
   %br/
@@ -13,7 +21,4 @@
 - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
   = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
   %br/
-- if devise_mapping.omniauthable?
-  - resource_class.omniauth_providers.each do |provider|
-    = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)
-    %br/
+

@@ -21,3 +21,10 @@
       = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "６文字以上"
     .actions
       = f.submit "次へ進む"
+  .devise-content__sns
+    = link_to user_facebook_omniauth_authorize_path, class: "devise-content__sns__facebook" do
+      = fa_icon "facebook-official", class: "fa-2x devise-content__sns__facebook__icon"
+      %p Facebookで登録
+    = link_to user_google_oauth2_omniauth_authorize_path, class: "devise-content__sns__google" do
+      = image_tag "google.svg", class: "fa-2x devise-content__sns__google__icon" 
+      %p Googleで登録
