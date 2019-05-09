@@ -25,3 +25,24 @@
  font-size: 16px;
  color: $no-item;
 }
+@mixin facebook{
+  background: $facebook;
+  color: white;
+  display: block;
+  padding: 11px; 
+  text-decoration: none ;
+  max-width: 250px;
+  margin-bottom: 16px;
+  position: relative;
+}
+@mixin google{
+  background: white;
+  border: black solid 1px;
+  display: block;
+  padding: 10px; 
+  text-decoration: none ;
+  max-width: 250px;
+  position: relative;
+  color: black;
+}
+
