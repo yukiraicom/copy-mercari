@@ -122,6 +122,45 @@
         }
       }
     }
+    &__edit{
+      background: white;
+      &__head{
+        font-size: 18px;
+        text-align: center;
+        padding: 8px 24px;
+      }
+      &__icon{
+        padding: 55px 16px 24px;
+        text-align: center;
+        background: url(user-bg.jpg);
+        &__fig{
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0px;
+          &__icon{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+          }
+        }
+      }
+      &__content{
+        padding: 40px 16px;
+        &__text{
+          width: 100%;
+          min-height: 216px;
+        }
+        &__button{
+          margin: 16px 0 0;
+          background: red;
+          border: 1px solid red;
+          color: white;
+          display: block;
+          width: 100%;
+          line-height: 40px;
+        }
+      }
+    }
   }
   &__side{
     width: 250px;
@@ -152,3 +191,4 @@
     @include clearfix-after;
   }
 }
+
