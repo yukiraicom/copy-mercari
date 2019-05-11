@@ -3,7 +3,7 @@
     .container--mypage__content__icon
       = link_to "#", class: "container--mypage__content__icon__a" do
         = image_tag "chara.jpg", class: "container--mypage__content__icon__a__img"
-        %h2.container--mypage__content__icon__a__username #{@user.nickname}
+        %h2.container--mypage__content__icon__a__username #{current_user.nickname}
         .container--mypage__content__icon__a__number
           評価
           %span 10

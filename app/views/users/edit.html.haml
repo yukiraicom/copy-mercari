@@ -4,7 +4,7 @@
   .container--mypage__content
     .container--mypage__content__edit
       %h2.container--mypage__content__edit__head プロフィール
-      = form_for @user do |f|
+      = form_for current_user do |f|
         .container--mypage__content__edit__icon
           %figure.container--mypage__content__edit__icon__fig
             =image_tag "chara.jpg", class: "container--mypage__content__edit__icon__fig__icon"
