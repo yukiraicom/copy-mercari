@@ -50,7 +50,7 @@
     ポイント
     =fa_icon "arrow-right", class: "container--mypage__side__list__arrow"
   %h3.container--mypage__side__head 設定
-  =link_to "#", class: "container--mypage__side__list__item" do
+  =link_to "#{edit_user_path(current_user.id)}", class: "container--mypage__side__list__item" do
     プロフィール
     =fa_icon "arrow-right", class: "container--mypage__side__list__arrow"
   =link_to "#", class: "container--mypage__side__list__item" do
