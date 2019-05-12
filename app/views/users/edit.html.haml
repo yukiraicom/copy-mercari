@@ -4,6 +4,7 @@
   .container--mypage__content
     .container--mypage__content__edit
       %h2.container--mypage__content__edit__head プロフィール
+      = @user_error if @user_error.present?
       = form_for current_user do |f|
         .container--mypage__content__edit__icon
           %figure.container--mypage__content__edit__icon__fig

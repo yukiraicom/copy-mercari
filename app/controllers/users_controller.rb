@@ -4,8 +4,13 @@ class UsersController < ApplicationController
   def edit
   end
   def update
-    User.find(params[:id]).update(update_user)
-    redirect_to action: "edit"
+    @user = User.find(params[:id])
+    if @user.update(update_user)
+      redirect_to action: "edit"
+    else
+      @user_error = @user.errors.full_messages
+      render :edit
+    end
   end
 
   private
