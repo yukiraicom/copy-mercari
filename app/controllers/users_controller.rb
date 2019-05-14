@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   end
   def edit
   end
+  def edit2
+  end
   def update
     @user = User.find(params[:id])
     if @user.update(update_user)
