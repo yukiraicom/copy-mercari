@@ -1,4 +1,4 @@
-.container--mypage{
+﻿.container--mypage{
   width: 880px;
   margin: 40px auto 0;
   padding: 0 0 40px;
@@ -158,6 +158,23 @@
           display: block;
           width: 100%;
           line-height: 40px;
+        }
+      }
+    }
+    &__edit{
+      &__identification{
+        padding: 50px;
+        &__form{
+          margin: 40px 0 0;
+        }
+      }
+      &__head{
+        &__p{
+          &__text{
+            margin: 8px 0 0;
+            line-height: 1.5;
+            font-size: 12px;
+          }
         }
       }
     }
