@@ -15,6 +15,10 @@
       %br/
       = f.text_field :last_name_kana
     .field
+      = f.label :生年月日
+      %br/
+      = f.datetime_select :birthday, start_year: 1900, end_year: Time.now.year, use_month_numbers: "true", include_blank: "true", discard_hour: "true"
+    .field
       = f.label :郵便番号
       %br/
       = f.text_field :postal_code

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20190203031021) do
     t.string "last_name", default: "", null: false
     t.string "first_name_kana", default: "", null: false
     t.string "last_name_kana", default: "", null: false
+    t.date "birthday"
     t.integer "postal_code", null: false
     t.integer "prefecture", null: false
     t.string "city", null: false

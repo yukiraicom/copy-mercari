@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       last_name: user_params[:last_name], 
       first_name_kana: user_params[:first_name_kana],
       last_name_kana: user_params[:last_name_kana],
+      birthday: birthday_params,
       postal_code: user_params[:postal_code],
       prefecture: user_params[:prefecture],
       city: user_params[:city],
@@ -58,6 +59,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:adress)
+  end
+
+  def birthday_params
+    Date.new(params.require(:adress)[:"birthday(1i)"].to_i,
+             params.require(:adress)[:"birthday(2i)"].to_i,
+             params.require(:adress)[:"birthday(3i)"].to_i)
   end
   
   def credit_params
