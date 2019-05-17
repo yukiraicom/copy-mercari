@@ -6,6 +6,7 @@ class CreateAdresses < ActiveRecord::Migration[5.1]
       t.string :last_name,  null: false, default: ""
       t.string :first_name_kana, null: false, default: ""
       t.string :last_name_kana, null: false, default: "" 
+      t.date :birthday
       t.integer :postal_code, null: false
       t.integer :prefecture, null: false 
       t.string :city, null: false
