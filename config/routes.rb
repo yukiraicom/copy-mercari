@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     get 'users/sign_up_fin' => 'users/registrations#fin'
   end
   resources :users, only: [:show, :edit, :update]
-  get 'identification', to: 'users#edit2'
+  resources :adresses, only: [:edit, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
