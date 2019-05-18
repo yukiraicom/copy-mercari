@@ -5,7 +5,7 @@
     .container--mypage__content__edit
       %h2.container--mypage__content__edit__head 本人情報の登録
       = @adress_error if @adress_error.present?
-      = form_for @adress, html:{ class: "container--mypage__content__edit__identification"} do |f|
+      = form_for current_user.adress, html:{ class: "container--mypage__content__edit__identification"} do |f|
         .container--mypage__content__edit__head__p
           %p.container--mypage__content__edit__head__p__text お客さまの本人情報をご登録ください。
           %p.container--mypage__content__edit__head__p__text 登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
@@ -14,10 +14,10 @@
           %p #{current_user.nickname}
         .container--mypage__content__edit__identification__form
           %label お名前(カナ) 
-          %p #{@adress.first_name_kana + @adress.last_name_kana}
+          %p #{current_user.adress.first_name_kana + current_user.adress.last_name_kana}
         .container--mypage__content__edit__identification__form
           %label 生年月日
-          %p #{@adress.birthday}
+          %p #{current_user.adress.birthday}
         .container--mypage__content__edit__identification__form
           %p 郵便番号
           = f.text_field :postal_code, class: "container--mypage__content__edit__identification__form__input"

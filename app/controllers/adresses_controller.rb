@@ -1,6 +1,5 @@
 class AdressesController < ApplicationController
   def edit
-    @adress = current_user.adress
   end
   def update
     @adress = current_user.adress
