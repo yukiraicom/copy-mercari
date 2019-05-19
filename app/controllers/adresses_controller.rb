@@ -3,13 +3,7 @@ class AdressesController < ApplicationController
   end
   def update
     @adress = current_user.adress
-    if @adress.update(
-      postal_code: user_params[:postal_code],
-      prefecture: user_params[:prefecture],
-      city: user_params[:city],
-      street: user_params[:street],
-      building_name: user_params[:building_name],
-      )
+    if @adress.update(user_params)
       redirect_to edit_adress_path
     else
       @adress_error = @adress.errors.full_messages
