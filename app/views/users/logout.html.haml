@@ -1,0 +1,7 @@
+.container--mypage
+  .container--mypage__side
+    = render partial: "mypage_side"
+  .container--mypage__content
+    .container--mypage__content__logout
+      = link_to destroy_user_session_path, method: "delete", class: "container--mypage__content__logout__link" do
+        ログアウト
