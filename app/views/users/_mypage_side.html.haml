@@ -62,13 +62,13 @@
   =link_to "#", class: "container--mypage__side__list__item" do
     メール/パスワード
     =fa_icon "arrow-right", class: "container--mypage__side__list__arrow"
-  =link_to edit_adress_path, class: "container--mypage__side__list__item" do
+  =link_to edit_adress_path(current_user.id), class: "container--mypage__side__list__item" do
     本人情報
     =fa_icon "arrow-right", class: "container--mypage__side__list__arrow"
   =link_to "#", class: "container--mypage__side__list__item" do
     電話番号の確認
     =fa_icon "arrow-right", class: "container--mypage__side__list__arrow"
-  =link_to  destroy_user_session_path, method: "delete", class: "container--mypage__side__list__item" do
+  =link_to  users_logout_path, class: "container--mypage__side__list__item" do
     ログアウト
     =fa_icon "arrow-right", class: "container--mypage__side__list__arrow"
 
