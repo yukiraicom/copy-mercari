@@ -1,0 +1,56 @@
+.container--mypage
+  .container--mypage__side
+    = render partial: "users/mypage_side"
+  .container--mypage__content
+    .container--mypage__content__edit
+      %h2.container--mypage__content__edit__head クレジットカード情報入力
+      = form_for @credit, html:{ class: "container--mypage__content__edit__identification" } do |f|
+        .container--mypage__content__edit__identification__form
+          カード番号
+          = f.text_field :card_number, placeholder: "半角数字のみ" , class: "container--mypage__content__edit__identification__form__input"
+          %ul.container--mypage__content__edit__identification__form__ul
+            %li.container--mypage__content__edit__identification__form__ul__li<
+              = image_tag "visa.svg", class: "container--mypage__content__edit__identification__form__img"
+            %li.container--mypage__content__edit__identification__form__ul__li<
+              = image_tag "master-card.svg", class: "container--mypage__content__edit__identification__form__img"
+            %li.container--mypage__content__edit__identification__form__ul__li<
+              = image_tag "saison-card.svg", class: "container--mypage__content__edit__identification__form__img"
+            %li.container--mypage__content__edit__identification__form__ul__li<
+              = image_tag "jcb.svg", class: "container--mypage__content__edit__identification__form__img"
+            %li.container--mypage__content__edit__identification__form__ul__li<
+              = image_tag "american_express.svg", class: "container--mypage__content__edit__identification__form__img"
+            %li.container--mypage__content__edit__identification__form__ul__li<
+              = image_tag "dinersclub.svg", class: "container--mypage__content__edit__identification__form__img"
+            %li.container--mypage__content__edit__identification__form__ul__li<
+              = image_tag "discover.svg", class: "container--mypage__content__edit__identification__form__img"
+
+        .container--mypage__content__edit__identification__form
+          = f.label :有効期限
+          %br/
+          = f.select :expiration_month,
+          [["01", 01],
+          ["02", 2],
+          ["03", 3],
+          ["04", 4],
+          ["05", 5],
+          ["06", 6],
+          ["07", 7],
+          ["08", 8],
+          ["09", 9],
+          ["10", 10],
+          ["11", 11],
+          ["12", 12]],
+          {},
+          {class: 'container--mypage__content__edit__identification__form__select--expiration'}
+          月,
+          %br/
+          = f.select :expiration_year, [["18", 18], ["19", 19]], 
+          {},
+          {class: 'container--mypage__content__edit__identification__form__select--expiration'}
+          年
+        .container--mypage__content__edit__identification__form
+          = f.label :セキュリティコード
+          = f.text_field :security_code, placeholder: "カード背面４桁もしくは３桁の番号", class: "container--mypage__content__edit__identification__form__input"
+        .container--mypage__content__edit__identification__form
+          = link_to new_credit_path, class: "container--mypage__content__logout__link" do
+            追加する
