@@ -164,6 +164,8 @@
     &__edit{
       &__identification{
         padding: 50px;
+        max-width: 300px;
+        margin: 0 auto;
         &__form{
           margin: 40px 0 0;
           &__button{
@@ -180,6 +182,20 @@
             width: 100%;
             height: 23px;
             background-color: white;
+            &--expiration{
+              width: 35%;
+              height: 35px;
+              background-color: white;
+            }
+          }
+          &__ul{
+            margin: 8px 0 0;
+            &__li{
+              display: inline;
+            }
+          }
+          &__img{
+            height: 20px;
           }
         }
       }
