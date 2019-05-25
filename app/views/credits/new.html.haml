@@ -4,6 +4,7 @@
   .container--mypage__content
     .container--mypage__content__edit
       %h2.container--mypage__content__edit__head クレジットカード情報入力
+      = @credit_error if @credit_error.present?
       = form_for @credit, html:{ class: "container--mypage__content__edit__identification" } do |f|
         .container--mypage__content__edit__identification__form
           カード番号
@@ -52,5 +53,4 @@
           = f.label :セキュリティコード
           = f.text_field :security_code, placeholder: "カード背面４桁もしくは３桁の番号", class: "container--mypage__content__edit__identification__form__input"
         .container--mypage__content__edit__identification__form
-          = link_to new_credit_path, class: "container--mypage__content__logout__link" do
-            追加する
+          = button_tag "追加する", class: "container--mypage__content__logout__link"
