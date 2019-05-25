@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   get 'users/logout', to: 'users#logout'
   resources :users, only: [:show, :edit, :update]
   resources :adresses, only: [:edit, :update]
-  resources :credits, only: [:index, :new]
+  resources :credits, only: [:index, :new, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
