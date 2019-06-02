@@ -198,6 +198,36 @@
             height: 20px;
           }
         }
+        &__h3{
+          max-width: 320px;
+          position: relative;
+          
+          &--h3{
+            font-size: 16px;
+
+          }
+          &__image{
+            height: 15px;
+            width: 50px;
+          }
+          &__delete{
+            text-decoration: none;
+            color: red;
+            border-radius: 3px;
+            border: 1px solid #ea352d;
+            position: absolute;
+            top: 31px
+          }
+          &__delete{
+            text-decoration: none;
+            color: red;
+            border-radius: 3px;
+            border: 1px solid #ea352d;
+            position: absolute;
+            top: 30px;
+            right: 0;
+          }
+        }
       }
       &__head{
         border-bottom: 1px solid $backcolor;
