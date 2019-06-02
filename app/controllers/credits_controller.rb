@@ -9,7 +9,6 @@
     @credit = Credit.new
   end
   def create
-    binding.pry
     credit = Credit.new(credit_params)
     if credit.save
       redirect_to credits_path
