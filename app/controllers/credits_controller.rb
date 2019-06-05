@@ -5,9 +5,11 @@
       @expiration_date = "#{current_user.credit.expiration_month}" + "/" + "#{current_user.credit.expiration_year}"
     end
   end
+
   def new
     @credit = Credit.new
   end
+
   def create
     credit = Credit.new(credit_params)
     if credit.save
@@ -17,9 +19,14 @@
       render :new
     end
   end
+
   def destroy
-  Credit.find(params[:id]).destroy
-  redirect_to credits_path
+    credit = Credit.find(params[:id])
+    if credit.destroy
+      redirect_to credits_path
+    else
+      redirect_to credits_path, notice: "削除に失敗しました"
+    end
   end
 
   private
