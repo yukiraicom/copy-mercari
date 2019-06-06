@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_one :adress
+  has_one :credit
   validates :nickname, presence: true
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true, length: { minimum: 6 }, confirmation: true
