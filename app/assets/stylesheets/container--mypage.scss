@@ -123,6 +123,7 @@
       }
     }
     &__edit{
+      padding-bottom: 40px;
       background: white;
       &__head{
         font-size: 18px;
@@ -164,6 +165,8 @@
     &__edit{
       &__identification{
         padding: 50px;
+        max-width: 300px;
+        margin: 0 auto;
         &__form{
           margin: 40px 0 0;
           &__button{
@@ -180,6 +183,48 @@
             width: 100%;
             height: 23px;
             background-color: white;
+            &--expiration{
+              width: 35%;
+              height: 35px;
+              background-color: white;
+            }
+          }
+          &__ul{
+            margin: 8px 0 0;
+            &__li{
+              display: inline;
+            }
+          }
+          &__img{
+            height: 20px;
+          }
+        }
+        &__h3{
+          max-width: 320px;
+          position: relative;
+          &--h3{
+            font-size: 16px;
+          }
+          &__image{
+            height: 15px;
+            width: 50px;
+          }
+          &__delete{
+            text-decoration: none;
+            color: red;
+            border-radius: 3px;
+            border: 1px solid #ea352d;
+            position: absolute;
+            top: 31px
+          }
+          &__delete{
+            text-decoration: none;
+            color: red;
+            border-radius: 3px;
+            border: 1px solid #ea352d;
+            position: absolute;
+            top: 30px;
+            right: 0;
           }
         }
       }
