@@ -16,7 +16,7 @@
                 .dropbox--container__items--container--items
                   %ul
               .dropbox--container__dropbox
-                %input.dropbox--container__dropbox__file#input--drop{:multiple => "", :name => "image1", :style => "display: none;", :type => "file"}/
+                %input.dropbox--container__dropbox__file#input--drop{multiple: "", name: "image1", style: "display: none;", type: "file"}/
                 %p.dropbox--container__dropbox__font
                   ドラッグアンドドロップ
                   %br
@@ -27,11 +27,11 @@
             %label 商品名
             %span.form-require 必須
             .item-form__dev
-              %input.item-form__input{:placeholder => "商品名（必須 40文字まで)", :value => ""}/
+              %input.item-form__input{placeholder: "商品名（必須 40文字まで)", value: ""}/
           .item-form__group
             %label 商品の説明
             %span.form-require 必須
-            %textarea.item-form__textarea{:placeholder => "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", :rows => "5"}
+            %textarea.item-form__textarea{placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5"}
         .item-form--content
           %h3.item-form__sub-head 商品の詳細
           .item-form__box
@@ -89,7 +89,7 @@
                   .item-form__price--r
                     ¥
                     .item-form__price--r__input-box
-                      %input.item-form__input.item-form--font-right{:placeholder => "例）300", :value => ""}/
+                      %input.item-form__input.item-form--font-right{placeholder: "例）300", value: ""}/
                 .item-form__price-box
                   .item-form__price--l
                     販売手数料
@@ -107,6 +107,5 @@
             また、出品をもちまして加盟店規約に同意したことになります。
           %button.item-form__submit-red.item-form__submit
             出品する
-          %a.item-form__submit-gray
-            もどる
+          = link_to "もどる", "#", class: "item-form__submit-gray"
 
