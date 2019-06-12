@@ -1,0 +1,195 @@
+.container--item{
+  @include container;
+  &__side{
+  @include side;
+  }
+  &__content{
+    @include content;
+  }
+  &:after{
+    @include clearfix-after;
+  }
+}
+.inner{
+  &__logo{
+    width: 185px;
+    height: 49px;
+    &--contain{
+      display: block;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+  }
+  &__content{
+    width: 600px;
+    margin: 0 auto;
+  }
+  @include edit;
+  &__head{
+    @include edit__head;
+  }
+}
+.item-form{
+  &--upload{
+    width: 420px;
+    padding: 40px;
+    &__font{
+      font-size: 13px;
+      margin: 8px 0 0;
+    }
+  }
+  &--content{
+    padding: 40px;
+    border-top: 1px solid $item-form__border;
+    &:after{
+      @include clearfix-after;
+    }
+  }
+  &__group{
+    margin: 40px 0 0;
+    &:first-child{
+      margin: 0;
+    }
+  }
+  &__input{
+    width: 100%;
+    margin: 8px 0 0;
+  }
+  &__textarea{
+    margin: 8px 0 0;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 104px;
+    padding: 10px;
+    border: 1px solid gray;
+    background: white;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  &__sub-head{
+    float: left;
+    color: $sub-head;
+    font-size: 14px;
+  }
+  &__box{
+    float: right;
+    width: 300px;
+    margin: 0;
+  }
+  &__select{
+    &-wrap{
+      margin: 8px 0 0;
+      position: relative;
+      background: white;
+    }
+    &-box{
+      width: 100%;
+      position: relative;
+      height: 40px;
+      padding: 0 16px;
+      border-radius: 4px;
+      border: 1px solid $no-item;
+      background: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    &-icon{
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      z-index: 2;
+      color: $sub-head;
+      font-size: 8px;
+      -webkit-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+    }
+  }
+  &__price{
+    &-box{
+      padding: 24px 0;
+      &:after{
+        @include clearfix-after;
+      }
+      &:nth-child(2){
+        border-top: 1px solid $no-item;
+        border-bottom: 1px solid $no-item;
+      }
+      &:nth-child(3){
+        font-weight: bold;
+      }
+    }
+    &--l{
+      width: 50%;
+      float: left;
+      line-height: 48px;
+    }
+    &--r{
+      width: 50%;
+      float: right;
+      line-height: 48px;
+      text-align: right;
+      &__input-box{
+        width: 80%;
+        display: inline-block;
+      }
+    }
+  }
+  &--font-right{
+    text-align: right;
+  }
+  &__btn-box{
+    padding: 40px;
+    border-top: 1px solid $item-form__border;
+  }
+  &__submit{
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    &-red{
+      margin: 40px 0 0;
+      background: red;
+      border: 1px solid red;
+      color: white;
+    }
+    &-gray{
+      width: 45%;
+      margin: 24px auto 0;
+      background: gray;
+      border: 1px solid gray;
+      color: white;
+      line-height: 48px;
+      font-size: 14px;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+}
+.dropbox--container{
+  margin: 16px auto 0;
+  &__dropbox{
+    width: 100%;
+    padding: 40px;
+    position: relative;
+    min-height: 100px;
+    background: $dropbox-gray;
+    border: 1px dashed $light-gray;
+    &__font{
+      position: absolute;
+      top: 40%;
+      left: 16px;
+      right: 16px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+}
+
