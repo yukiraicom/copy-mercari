@@ -21,3 +21,5 @@
 *.cache
 .idea/
 *.pid
+
+app/assets/stylesheets/fontawesome-free-5.9.0-web/*
