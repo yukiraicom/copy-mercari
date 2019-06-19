@@ -1,0 +1,23 @@
+.header
+  .header__inner
+    .header__inner__top
+      = link_to root_path do
+        = image_tag("logo.svg")
+      = form_tag  "#" do
+        = text_field :item, :name, placeholder: "キーワードから探す"
+    .header__inner__nav
+      %p.header__inner__nav__p カテゴリーから探す
+      %p.header__inner__nav__p ブランドから探す
+      %ul.header__inner__nav__right
+        -if user_signed_in?
+          %li.header__inner__nav__right__li<
+            = link_to user_path(current_user.id), class: "header__inner__nav__right__li__a" do
+              =image_tag "1.jpg", class: "header__inner__nav-img"
+              マイページ
+          %li.header__inner__nav__right__li<
+            = fa_icon "bell-o"
+            お知らせ
+        - else
+          =link_to "新規会員登録", new_user_registration_path, class: "header__inner__nav__session__regist"
+          =link_to "ログイン", new_user_session_path, class: "header__inner__nav__session__login"
+
