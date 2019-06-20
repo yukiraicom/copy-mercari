@@ -1,3 +1,108 @@
-// Place all the styles related to the purchases controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+﻿.purchase--container{
+  width: 600px;
+  margin: 0 auto;
+  background: white;
+}
+.purchase{
+  &__h2{
+    font-size: 18px;
+    text-align: center;
+    padding: 15px 24px;
+  }
+  &--item{
+    padding: 24px 70px 0;
+    border-top: 1px solid $backcolor;
+  }
+  &__inner{
+    text-align: center;
+    max-width: 320px;
+    margin: 0 auto;
+    &--a{
+      display: block;
+      text-align: right;
+      font-size: 14px;
+    }
+    &--h3__img{
+      width: 148px;
+    }
+    &--p{
+      font-size: 16px;
+      font-weight: bold;
+    }
+    &--user-info{
+      margin: 40px 0 0;
+      padding: 24px 70px; 0;
+      border-top: 1px solid $backcolor;
+      &__inner{
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      &-h3{
+        font-size: 14px;
+        margin-bottom: 7px;
+      }
+    }
+    &--buy-user-info{
+      padding: 40px;
+      margin: 40px 0 0;
+      border-top: 1px solid $backcolor;
+      &--inner{
+        max-width: 320px;
+        margin: 0 auto;
+        &-h3{
+          font-size: 14px;
+        }
+        &-p{
+          margin: 8px 0 0;
+          font-size: 14px;
+        }
+      }
+      &--fig{
+        margin: 3px;
+      }
+      &-img{
+        height: 15px;
+      }
+    }
+  }
+  &__form{
+    &--p{
+      margin: 8px 0 0;
+      font-size: 28px;
+      &--sell{
+        font-size: 28px;
+        font-weight: bold;
+        &-l{
+          text-align: left;
+          display: inline-block;
+          padding: 16px 0;
+        }
+        &-r{
+          display: inline-block;
+          padding: 16px 0;
+          text-align: right;
+        }
+      }
+    }
+    &--span{
+      margin: 0 0 0 8px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    &--button{
+      background: gray;
+      padding: 16px;
+      width: 320px;
+    }
+    &--button-red{
+      background: red;
+      border: 1px solid red;
+      color: white;
+      display: block;
+      text-align: center;
+      width: 100%;
+      line-height: 48px;
+      font-size: 14px;
+    }
+  }
+}
