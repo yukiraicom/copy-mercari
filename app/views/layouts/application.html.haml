@@ -16,7 +16,7 @@
     = render "shared/simple-logo"
 
   = yield
-  = render partial: "layouts/banner" if !(controller.controller_name == "items" && controller.action_name == "new")
+  = render partial: "layouts/banner" if !(controller.controller_name == "items" && controller.action_name == "new") && !(controller_name == "purchases")
   = render partial: "layouts/footer" 
-  = render partial: "layouts/sellbtn" if controller.controller_name != "items"
+  = render partial: "layouts/sellbtn" if controller.controller_name != "items" && !(controller_name == "purchases")
   

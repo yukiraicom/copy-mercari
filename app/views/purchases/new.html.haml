@@ -1,0 +1,36 @@
+﻿.purchase--container
+  .purchase__h2--container
+    %h2.purchase__h2 購入内容の確認
+  .purchase--item
+    .purchase__inner
+      %h3.purchase__inner--h3
+        = image_tag "item1.jpg", class: "purchase__inner--h3__img"
+      %p.purchase__inner--p ワンピースグレー
+      %form
+        .purchase__form--p
+          ¥ 1,400
+          %span.purchase__form--span 送料込み
+        = button_tag class: "purchase__form--button" do
+          ポイントはありません
+        .purchase__form--p-sell-contain
+          %p.purchase__form--p--sell.purchase__form--p--sell-l 支払い金額
+          %p.purchase__form--p--sell.purchase__form--p--sell-r ¥ 1,400
+        = button_tag class: "purchase__form--button-red" do
+          購入する
+    .purchase__inner--user-info
+      .purchase__inner--user-info__inner
+        %h3.purchase__inner--user-info-h3 配送先
+        .purchase__inner--user-info--adress
+          %p 〒000-0000
+          %p 愛知県名古屋市守山師山未区翠松尾羽園邪馬1-7-999
+          %p 山田太郎
+        = link_to "変更する", "#", class: "purchase__inner--a"
+    .purchase__inner--buy-user-info
+      .purchase__inner--buy-user-info--inner
+        %h3.purchase__inner--buy-user-info--inner-h3 支払方法
+        %p.purchase__inner--buy-user-info--inner-p ****************
+        %p.purchase__inner--buy-user-info--inner-p 1/1
+        %figure.purchase__inner--buy-user-info--fig
+          = image_tag "visa.svg", class: "purchase__inner--buy-user-info-img"
+        = link_to "変更する", "#", class: "purchase__inner--a"
+
