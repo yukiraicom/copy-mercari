@@ -13,8 +13,8 @@ describe Credit do
     end
 
     it "is invalid with a duplicate card_number" do
-      credit = create(:credit)
-      another_credit = build(:credit)
+      credit = create :credit
+      another_credit = build(:credit, :with_another_user)
       another_credit.valid?
       expect(another_credit.errors[:card_number]).to include("has already been taken")
     end
@@ -45,7 +45,7 @@ describe Credit do
 
     it "is invalid with a duplicate security_code" do
       credit = create(:credit)
-      another_credit = build(:credit)
+      another_credit = build(:credit, :with_another_user)
       another_credit.valid?
       expect(another_credit.errors[:security_code]).to include("has already been taken")
     end
