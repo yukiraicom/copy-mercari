@@ -19,8 +19,8 @@ describe User do
     end
 
     it "is invalid with a duplicate email adress" do
-      user = create(:user)
-      another_user = build(:user)
+      user = create(:user, email: "aa@aa")
+      another_user = build(:user, email: "aa@aa")
       another_user.valid?
       expect(another_user.errors[:email]).to include("has already been taken")
     end
