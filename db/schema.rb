@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 20190710142037) do
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
-    t.string "condition", null: false
+    t.integer "condition", null: false
     t.integer "price", null: false
     t.string "description", null: false
-    t.string "status", null: false
+    t.integer "status", null: false
     t.index ["name"], name: "index_items_on_name"
   end
 
