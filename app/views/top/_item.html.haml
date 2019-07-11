@@ -1,11 +1,11 @@
 = link_to item_path(1) do
   .all-item__box__photo
-    = image_tag("item1.jpg") 
+    = image_tag(item.images[0].image.url)
   %h3.all-item__box__body
-    %p itemの説明
+    %p #{item.name}
     .all-item__box__body__num
       .all-item__box__body__num__price
-        %p ¥ 12,700
+        %p ¥ #{item.price}
       .all-item__box__body__num__likes
         = fa_icon "heart-o"
         %span 18
