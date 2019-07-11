@@ -1,11 +1,11 @@
-class CreateItem < ActiveRecord::Migration[5.1]
+class CreateItems < ActiveRecord::Migration[5.1]
   def change
     create_table :items do |t|
       t.string :name, null: false, index: true
-      t.string :condition, null: false
+      t.integer :condition, null: false
       t.integer :price, null: false
       t.string :description, null: false
-      t.string :status, null: false
+      t.integer :status, null: false
     end
   end
 end
