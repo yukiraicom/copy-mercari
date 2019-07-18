@@ -64,3 +64,5 @@ group :test do
 end
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'rails-controller-testing'
+gem 'carrierwave'
