@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190203031021) do
+ActiveRecord::Schema.define(version: 20190710142037) do
 
   create_table "adresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -41,6 +41,21 @@ ActiveRecord::Schema.define(version: 20190203031021) do
     t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
+  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "image"
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_images_on_item_id"
+  end
+
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.integer "condition", null: false
+    t.integer "price", null: false
+    t.string "description", null: false
+    t.integer "status", null: false
+    t.index ["name"], name: "index_items_on_name"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -64,4 +79,5 @@ ActiveRecord::Schema.define(version: 20190203031021) do
 
   add_foreign_key "adresses", "users"
   add_foreign_key "credits", "users"
+  add_foreign_key "images", "items"
 end
