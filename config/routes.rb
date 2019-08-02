@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   resources :adresses, only: [:edit, :update]
   resources :credits, only: [:index, :new, :create, :destroy]
-  resources :items, only: [:new, :show]
+  resources :items, only: [:new, :create, :show]
   resources :purchases, only: [:new]
   resources :top, only: [:index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
