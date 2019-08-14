@@ -1,23 +1,24 @@
 .inner__content
   .inner
     %h2.inner__head 商品の情報を入力
-    %form.inner__item-form
-      .item-form--upload
-        %h3.item-form--upload__head
-          出品画像
-          %span.form-require 必須
-        %p.item-form--upload__font 最大10枚までアップロードできます
-        %label{for: "input--drop"}
-          .dropbox--container
-            .dropbox--container__items--container
-              .dropbox--container__items--container--items
-                %ul
-            .dropbox--container__dropbox
-              %input.dropbox--container__dropbox__file#input--drop{multiple: "", name: "image1", style: "display: none;", type: "file"}/
-              %p.dropbox--container__dropbox__font
-                ドラッグアンドドロップ
-                %br
-                またはクリックしてファイルをアップロード
+    = form_for @item, html: {class: "inner__item-form"} do |f|
+      = f.fields_for :images do |image|
+        .item-form--upload
+          %h3.item-form--upload__head
+            出品画像
+            %span.form-require 必須
+          %p.item-form--upload__font 最大10枚までアップロードできます
+          %label{for: "input--drop"}
+            .dropbox--container
+              .dropbox--container__items--container
+                .dropbox--container__items--container--items
+                  %ul
+              .dropbox--container__dropbox
+                = image.file_field :image, class: "dropbox--container__dropbox__file", id: "input--drop", multiple: "true", style: "display: none"
+                %p.dropbox--container__dropbox__font
+                  ドラッグアンドドロップ
+                  %br
+                  またはクリックしてファイルをアップロード
 
       .item-form--content
         .item-form__group
@@ -35,17 +36,15 @@
           .item-form__group
             %label カテゴリー
             %span.form-require 必須
-            .item-form__dev
+            .item-form__dev#categoty{data: {parent: {id: 0}}}
               .item-form__select-wrap
-                %select.item-form__select-box
-                  %option{value: ""} ---
+                = f.select :category_id, @category.all.collect {|c| [c.name, c.id]}, {include_blank: "---"}, class: "item-form__select-box"
                 = fa_icon "chevron-down", class: "item-form__select-icon"
           .item-form__group
             %label 商品の状態
             %span.form-require 必須
             .item-form__select-wrap
-              %select.item-form__select-box
-                %option{value: ""} ---
+              = f.select :condition, Item.conditions.keys.collect {|c| [c, Item.conditions.keys.index(c)]}, {include_blank: "---"}, class: "item-form__select-box"
               = fa_icon "chevron-down", class: "item-form__select-icon"
       .item-form--content
         %h3.item-form__sub-head 配送について
@@ -55,24 +54,21 @@
             %span.form-require 必須
             .item-form__dev
               .item-form__select-wrap
-                %select.item-form__select-box
-                  %option{value: ""} ---
+                = f.select :postage, Item.postages.keys.collect {|c| [c, Item.postages.keys.index(c)]}, {include_blank: "---"}, class: "item-form__select-box"
                 = fa_icon "chevron-down", class: "item-form__select-icon"
           .item-form__group
             %label 発送元の地域
             %span.form-require 必須
             .item-form__dev
               .item-form__select-wrap
-                %select.item-form__select-box
-                  %option{value: ""} ---
+                = f.select :ship_from, Item.ship_froms.keys.collect {|c| [c, Item.ship_froms.keys.index(c)]}, {include_blank: "---"}, class: "item-form__select-box"
                 = fa_icon "chevron-down", class: "item-form__select-icon"
           .item-form__group
             %label 発送までの日数
             %span.form-require 必須
             .item-form__dev
               .item-form__select-wrap
-                %select.item-form__select-box
-                  %option{value: ""} ---
+                = f.select :days_before_shipment, Item.days_before_shipments.keys.collect {|c| [c, Item.days_before_shipments.keys.index(c)]}, {include_blank: "---"}, class: "item-form__select-box"
                 = fa_icon "chevron-down", class: "item-form__select-icon"
       .item-form--content
         %h3.item-form__sub-head 販売価格(300〜9,999,999)
