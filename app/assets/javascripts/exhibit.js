@@ -8,7 +8,7 @@ $(function() {
   }
   function buildCategory(category){
     var html = `
-      <div class="item-form__dev">
+      <div class="item-form__dev" data-parent-id="${category[0].parent_id}">
         <div class="item-form__select-wrap">
           <select class="item-form__select-box" name="item[category_id]" id="item_category_id">
             <option value="">---</option>
@@ -21,17 +21,31 @@ $(function() {
     return html
   }
 
-  $(".item-form__group").change(function(){
+  $(document).on("change", ".item-form__select-box#item_category_id", function(){
     var thisSelecter = $(this)
-    var selected_category = $(".item-form__select-box#item_category_id")
-    console.log(thisSelecter)
+    selected_number = thisSelecter.val()
+    var itemFormDev = $(".item-form__dev#categoty")
+    var itemFormGroup = thisSelecter.parent().parent().parent()
+    var previousOptions = itemFormGroup.find(".item-form__dev")
+    var optionsParentId = itemFormDev.data("parent-id")
+    itemFormGroup.empty()
+    itemFormGroup.append("<label>カテゴリー</label>")
+    itemFormGroup.append("<span class='form-require'>必須</span>")
+
     $.ajax({
       type: "GET",
       url: '/api/item',
-      data: {selected_number: selected_category[selected_category.length -1].value}
+      data: {selected_number: selected_number}
     })
       .done(function(category){
-        thisSelecter.append(buildCategory(category))
+        var previousId = 0
+        previousOptions.each(function(i, option){
+          if($(option).data("parent-id") == 0 || $(option).data("parent-id") == previousId ){
+            itemFormGroup.append($(option))
+            previousId = $(option).find('.item-form__select-box#item_category_id').val()
+          }
+        })
+        if(category.length != 0) itemFormGroup.append(buildCategory(category))
       })
   })
 })
