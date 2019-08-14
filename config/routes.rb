@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create, :show]
   resources :purchases, only: [:new]
   resources :top, only: [:index]
+  namespace :api do
+    resources :item, only: [:index]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 
