@@ -2,7 +2,7 @@
   .inner
     %h2.inner__head 商品の情報を入力
     = form_for @item, html: {class: "inner__item-form"} do |f|
-      = f.fields_for :images do |image|
+      = f.fields_for @image, :images do |image|
         .item-form--upload
           %h3.item-form--upload__head
             出品画像
@@ -25,11 +25,11 @@
           %label 商品名
           %span.form-require 必須
           .item-form__dev
-            %input.item-form__input{placeholder: "商品名（必須 40文字まで)", value: ""}/
+            = f.text_field :name, class: "item-form__input", placeholder: "商品名（必須 40文字まで)", value: ""
         .item-form__group
           %label 商品の説明
           %span.form-require 必須
-          %textarea.item-form__textarea{placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5"}
+          = f.text_area :description, class: "item-form__textarea", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5"
       .item-form--content
         %h3.item-form__sub-head 商品の詳細
         .item-form__box
@@ -44,7 +44,7 @@
             %label 商品の状態
             %span.form-require 必須
             .item-form__select-wrap
-              = f.select :condition, Item.conditions.keys.collect {|c| [c, Item.conditions.keys.index(c)]}, {include_blank: "---"}, class: "item-form__select-box"
+              = f.select :condition, Item.conditions.keys.collect {|c| [c, Item.conditions.keys.index(c)+1]}, {include_blank: "---"}, class: "item-form__select-box"
               = fa_icon "chevron-down", class: "item-form__select-icon"
       .item-form--content
         %h3.item-form__sub-head 配送について
@@ -54,21 +54,21 @@
             %span.form-require 必須
             .item-form__dev
               .item-form__select-wrap
-                = f.select :postage, Item.postages.keys.collect {|c| [c, Item.postages.keys.index(c)]}, {include_blank: "---"}, class: "item-form__select-box"
+                = f.select :postage, Item.postages.keys.collect {|c| [c, Item.postages.keys.index(c)+1]}, {include_blank: "---"}, class: "item-form__select-box"
                 = fa_icon "chevron-down", class: "item-form__select-icon"
           .item-form__group
             %label 発送元の地域
             %span.form-require 必須
             .item-form__dev
               .item-form__select-wrap
-                = f.select :ship_from, Item.ship_froms.keys.collect {|c| [c, Item.ship_froms.keys.index(c)]}, {include_blank: "---"}, class: "item-form__select-box"
+                = f.select :ship_from, Item.ship_froms.keys.collect {|c| [c, Item.ship_froms.keys.index(c)+1]}, {include_blank: "---"}, class: "item-form__select-box"
                 = fa_icon "chevron-down", class: "item-form__select-icon"
           .item-form__group
             %label 発送までの日数
             %span.form-require 必須
             .item-form__dev
               .item-form__select-wrap
-                = f.select :days_before_shipment, Item.days_before_shipments.keys.collect {|c| [c, Item.days_before_shipments.keys.index(c)]}, {include_blank: "---"}, class: "item-form__select-box"
+                = f.select :days_before_shipment, Item.days_before_shipments.keys.collect {|c| [c, Item.days_before_shipments.keys.index(c)+1]}, {include_blank: "---"}, class: "item-form__select-box"
                 = fa_icon "chevron-down", class: "item-form__select-icon"
       .item-form--content
         %h3.item-form__sub-head 販売価格(300〜9,999,999)
@@ -82,7 +82,7 @@
                 .item-form__price--r
                   ¥
                   .item-form__price--r__input-box
-                    %input.item-form__input.item-form--font-right{placeholder: "例）300", value: ""}/
+                    = f.text_field :price, class: "item-form__input item-form--font-right", placeholder: "例）300", value: ""
               .item-form__price-box
                 .item-form__price--l
                   販売手数料
