@@ -6,11 +6,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(params_int(item_params))
     if itemSave
       redirect_to root_path
     else
-      @item_error = item.errors.full_messages
+      @errors = @item.errors.full_messages
+      @image = Image.new
+      @category = Category.where(parent_id: 0)
       render :new
     end
   end
@@ -56,10 +57,15 @@ class ItemsController < ApplicationController
     end
 
     def itemSave
-      params.permit![:item][:image][:image].each do |x|
-        item.images.create(image: x) if item.save
+      @item = Item.new(params_int(item_params))
+      begin
+        params.permit![:item][:image][:image].each do |x|
+          @item.images.create(image: x) if @item.save
+        end
+      rescue
+        false
       end
+      @item.save
     end
-
 end
 
