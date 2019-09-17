@@ -1,6 +1,9 @@
 .inner__content
   .inner
     %h2.inner__head 商品の情報を入力
+    - if @errors.present?
+      - @errors.each do |e|
+        %p "#{e}"
     = form_for @item, html: {class: "inner__item-form"} do |f|
       = f.fields_for @image, :images do |image|
         .item-form--upload
