@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190710142037) do
+ActiveRecord::Schema.define(version: 20190731185300) do
 
   create_table "adresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20190710142037) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_adresses_on_user_id"
+  end
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "parent_id", null: false
+    t.string "name", null: false
   end
 
   create_table "credits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -52,7 +57,11 @@ ActiveRecord::Schema.define(version: 20190710142037) do
     t.integer "condition", null: false
     t.integer "price", null: false
     t.string "description", null: false
-    t.integer "status", null: false
+    t.integer "postage", null: false
+    t.integer "ship_from", null: false
+    t.integer "days_before_shipment", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["name"], name: "index_items_on_name"
   end
 
@@ -80,4 +89,5 @@ ActiveRecord::Schema.define(version: 20190710142037) do
   add_foreign_key "adresses", "users"
   add_foreign_key "credits", "users"
   add_foreign_key "images", "items"
+  add_foreign_key "items", "categories"
 end
