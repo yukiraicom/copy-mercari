@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
     end
 
     def itemSave
-      @item = Item.new(params_int(item_params))
+      @item = Item.new(params_int(item_params))#paramsを数字にしてimage以外をpermitする
       begin
         params.permit![:item][:image][:image].each do |x|
           @item.images.create(image: x) if @item.save
