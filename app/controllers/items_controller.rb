@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def new
     @item = Item.new
-    @image = Image.new
+    @images = Image.new
     @category = Category.where(parent_id: 0)
   end
 
@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       @errors = @item.errors.full_messages
-      @image = Image.new
+      @images = Image.new
       @category = Category.where(parent_id: 0)
       render :new
     end
@@ -34,12 +34,10 @@ class ItemsController < ApplicationController
     def params_int(model_params)
       newparams = {}
       model_params.each do |key, value|
-        if key != "images_attributes"
-          if integer_string?(value)
-            newparams[key]=value.to_i
-          else
+        if key != "images_attributes" && integer_string?(value)
+          newparams[key]=value.to_i
+        else
             newparams[key]=value
-          end
         end
       end
       return newparams
