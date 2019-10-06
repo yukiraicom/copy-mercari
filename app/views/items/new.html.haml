@@ -13,9 +13,9 @@
           %p.item-form--upload__font 最大10枚までアップロードできます
           %label{for: "input--drop"}
             .dropbox--container
-              .dropbox--container__items--container
-                .dropbox--container__items--container--items
-                  %ul
+              .dropbox--container__items
+                %ul
+                  %li
               .dropbox--container__dropbox
                 = image.file_field :image, class: "dropbox--container__dropbox__file", id: "input--drop", multiple: "true", style: "display: none"
                 %p.dropbox--container__dropbox__font
