@@ -50,3 +50,69 @@ $(function() {
   })
 })
 
+
+//以下 画像サムネ生成
+$(function() {
+  // $('dropbox--container__dropbox__file').after('<span></span>');
+  function buildImg(imgSrc) {
+    var html = `
+      <li>
+        <img src="${imgSrc}">
+        <div class="dropbox--container__items__edit">
+            <a href="">削除</a>
+          </div>
+      </li>
+    `
+    return html
+  }
+
+  $('.dropbox--container__dropbox__file').change(function() {
+    // $('span').html('');
+    var file = $(this).prop('files');
+
+    var img_count = 1;
+    $(file).each(function(i) {
+      if (img_count > 10) {
+        return false;
+      }
+
+      if (! file[i].type.match('image.*')) {
+        $(this).val('');
+        $('span').html('');
+        return;
+      }
+
+      var reader = new FileReader();
+      reader.onload = function() {
+        var img_src = $('<img>').attr('src', reader.result);
+        var editOrDeleteButton = `
+          <div class="dropbox--container__items__edit">
+            <a href="">編集</a>
+            <a href="">削除</a>
+          </div>
+        `
+        // $('.dropbox--container__items ul li').append(img_src).append(editOrDeleteButton);
+        $('.dropbox--container__items ul').append(buildImg(reader.result))
+      }
+      reader.readAsDataURL(file[i]);
+      
+      img_count = img_count + 1;
+    });
+  });
+});
+
+//以下　サムネからfile削除
+$(function() {
+  $(document).on("click", ".dropbox--container__items__edit a", function(e){
+    e.preventDefault();
+    //Filelistから消す
+    var uploadedImages = Array.from($(this).parents(".dropbox--container").find(".dropbox--container__dropbox__file")[0].files);
+    var clickedImageNum = parseInt($(this).parents(".dropbox--container__items ul").find("li").index($(this).parents(".dropbox--container__items ul li")));
+    uploadedImages.splice(clickedImageNum, 1);
+    // debugger
+
+    //サムネを消す
+    
+
+  })
+})
