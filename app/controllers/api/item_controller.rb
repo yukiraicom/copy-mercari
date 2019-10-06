@@ -5,7 +5,7 @@ class Api::ItemController < ApplicationController
 
   private
   def category_params
-  Category.where(parent_id: params.permit(:selected_number).require(:selected_number))
+    Category.where(parent_id: params.permit(:selected_number).require(:selected_number))
   end
 end
 
