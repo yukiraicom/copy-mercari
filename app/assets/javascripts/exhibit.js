@@ -1,4 +1,6 @@
 $(function() {
+  ArrayuploadedImages = []; //formに入れたれた画像
+
   function putCategoryOption(category) {
     var optionHtml = ""
       category.forEach(function(e){
@@ -54,11 +56,11 @@ $(function() {
 //以下 画像サムネ生成
 $(function() {
   // $('dropbox--container__dropbox__file').after('<span></span>');
-  function buildImg(imgSrc) {
+  function buildImg(imgSrc, lastModified) {
     var html = `
       <li>
         <img src="${imgSrc}">
-        <div class="dropbox--container__items__edit">
+        <div class="dropbox--container__items__edit", data-lastmodified = "${lastModified}">
             <a href="">削除</a>
           </div>
       </li>
@@ -84,18 +86,17 @@ $(function() {
 
       var reader = new FileReader();
       reader.onload = function() {
-        var img_src = $('<img>').attr('src', reader.result);
-        var editOrDeleteButton = `
-          <div class="dropbox--container__items__edit">
-            <a href="">編集</a>
-            <a href="">削除</a>
-          </div>
-        `
         // $('.dropbox--container__items ul li').append(img_src).append(editOrDeleteButton);
-        $('.dropbox--container__items ul').append(buildImg(reader.result))
+        $('.dropbox--container__items ul').append(buildImg(reader.result, file[i].lastModified))
       }
       reader.readAsDataURL(file[i]);
-      
+      // console.log(file[i].lastModified)
+        //サムネ削除のためのformdata生成
+      // if (typeof ArrayuploadedImages === 'undefined' || ArrayuploadedImages.length === 0 ){
+      //   ArrayuploadedImages = Array.from($(this).parents(".dropbox--container").find(".dropbox--container__dropbox__file")[0].files);
+      // }   
+      ArrayuploadedImages.push(file[i])
+      debugger
       img_count = img_count + 1;
     });
   });
@@ -105,14 +106,23 @@ $(function() {
 $(function() {
   $(document).on("click", ".dropbox--container__items__edit a", function(e){
     e.preventDefault();
-    //Filelistから消す
-    var uploadedImages = Array.from($(this).parents(".dropbox--container").find(".dropbox--container__dropbox__file")[0].files);
-    var clickedImageNum = parseInt($(this).parents(".dropbox--container__items ul").find("li").index($(this).parents(".dropbox--container__items ul li")));
-    uploadedImages.splice(clickedImageNum, 1);
-    // debugger
+    var imageOfInput = $(this).parents(".dropbox--container").find(".dropbox--container__dropbox__file")
+    var clickedImageLastModified = $(this).parents().data("lastmodified");
+
+    for(var i in ArrayuploadedImages){
+      if(ArrayuploadedImages[i].lastModified === clickedImageLastModified){
+        ArrayuploadedImages.splice(i, 1)
+      }
+    }
+
+    var formData = new FormData($(this).parents(".inner__item-form")[0]); //画像だけ空のformdatam
+
+    // for(var i in ArrayuploadedImages){
+    //   console.log(ArrayuploadedImages[i])
+    //   formData.append("item[image][image][]", ArrayuploadedImages[i])
+    // }
 
     //サムネを消す
-    
-
+    $(this).parents(".dropbox--container__items ul li").remove();
   })
 })
