@@ -96,7 +96,6 @@ $(function() {
       //   ArrayuploadedImages = Array.from($(this).parents(".dropbox--container").find(".dropbox--container__dropbox__file")[0].files);
       // }   
       ArrayuploadedImages.push(file[i])
-      debugger
       img_count = img_count + 1;
     });
   });
@@ -117,10 +116,15 @@ $(function() {
 
     var formData = new FormData($(this).parents(".inner__item-form")[0]); //画像だけ空のformdatam
 
-    // for(var i in ArrayuploadedImages){
-    //   console.log(ArrayuploadedImages[i])
-    //   formData.append("item[image][image][]", ArrayuploadedImages[i])
-    // }
+  
+    formData.delete("item[image][image][]")
+
+    
+    for(var i in ArrayuploadedImages){
+      console.log(ArrayuploadedImages[i])
+      formData.append("item[image][image][]", ArrayuploadedImages[i])
+    }
+
 
     //サムネを消す
     $(this).parents(".dropbox--container__items ul li").remove();
