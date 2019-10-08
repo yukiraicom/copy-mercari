@@ -27,12 +27,11 @@ $(function () {
     var thisSelecter = $(this)
     selected_number = thisSelecter.val()
     var itemFormDev = $(".item-form__dev#categoty")
-    var itemFormGroup = thisSelecter.parent().parent().parent()
+    var itemFormGroup = thisSelecter.parents(".item-form__group")
     var previousOptions = itemFormGroup.find(".item-form__dev")
     var optionsParentId = itemFormDev.data("parent-id")
-    itemFormGroup.empty()
-    itemFormGroup.append("<label>カテゴリー</label>")
-    itemFormGroup.append("<span class='form-require'>必須</span>")
+    itemFormGroup.empty().append("<label>カテゴリー</label><span class='form-require'>必須</span>")
+    // .append("<span class='form-require'>必須</span>")
 
     $.ajax({
       type: "GET",
