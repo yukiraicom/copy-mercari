@@ -35,4 +35,8 @@ class Item < ApplicationRecord
     enum days_before_shipment: {
       "1~2日で発送":1, "2~3日で発送":2, "4~7日で発送":3
     }
+
+    enum status: {
+      "販売中":1, "交渉中":2, "出品停止":3, "売り切れ": 4
+    }
 end
