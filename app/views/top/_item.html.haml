@@ -1,4 +1,4 @@
-= link_to item_path(1) do
+= link_to item_path(item.id) do
   .all-item__box__photo
     = image_tag(item.images[0].image.url)
   %h3.all-item__box__body
