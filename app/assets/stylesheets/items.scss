@@ -173,6 +173,29 @@
   }
 }
 .dropbox--container{
+  &__items{
+    ul{
+      li{
+        display: inline-block;
+        width: 32%;
+        text-align: center;
+        img{
+          max-height: 150px;
+          max-width: 150px;
+        }
+      }
+    }
+    &__edit{
+      font-size: 20px;
+      a{
+        display: inline-block;
+        background: white;
+        line-height: 44px;
+        text-align: center;
+        text-decoration: none;
+      }
+    }
+  }
   margin: 16px auto 0;
   &__dropbox{
     width: 100%;

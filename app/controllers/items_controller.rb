@@ -7,12 +7,16 @@ class ItemsController < ApplicationController
 
   def create
     if itemSave
-      redirect_to root_path
+      render json: {'status': "ok"}
     else
-      @errors = @item.errors.full_messages
-      @images = Image.new
-      @category = Category.where(parent_id: 0)
-      render :new
+      unless request.xhr?
+        @errors = @item.errors.full_messages
+        @images = Image.new
+        @category = Category.where(parent_id: 0)
+        render :new
+      else request.xhr?
+        render plain: ""
+      end
     end
   end
 
