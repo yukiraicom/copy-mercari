@@ -130,3 +130,18 @@ $(function(){
     })
   })
 })
+
+$(function(){
+  $(document).on("input", "#item_price", function(){
+    var inputValue = parseInt($(this).val());
+    if(inputValue >= 300){
+      var fee = parseInt(inputValue*0.1)
+      var profit = inputValue-fee
+      var parentOfThis = $(this).parents(".item-form__group")
+      var feeText = parentOfThis.find(".item-form__price--r").eq(1)
+      feeText.empty().append("¥" + fee)
+      var profitText = parentOfThis.find(".item-form__price--r").eq(2)
+      profitText.empty().append("¥" + profit)
+    }
+  })
+})
