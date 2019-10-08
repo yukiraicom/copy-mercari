@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
       render json: {'status': "ok"}
     else
       unless request.xhr?
-        binding.pry
         @errors = @item.errors.full_messages
         @images = Image.new
         @category = Category.where(parent_id: 0)
