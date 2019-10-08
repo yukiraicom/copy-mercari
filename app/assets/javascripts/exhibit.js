@@ -1,14 +1,14 @@
-$(function() {
-  ArrayuploadedImages = []; 
+$(function () {
+  ArrayuploadedImages = [];
 
   function putCategoryOption(category) {
     var optionHtml = ""
-      category.forEach(function(e){
-        optionHtml += `<option value='${e.id}'>${e.name}</option>\n`
-      })
+    category.forEach(function (e) {
+      optionHtml += `<option value='${e.id}'>${e.name}</option>\n`
+    })
     return optionHtml
   }
-  function buildCategory(category){
+  function buildCategory(category) {
     var html = `
       <div class="item-form__dev" data-parent-id="${category[0].parent_id}">
         <div class="item-form__select-wrap">
@@ -53,7 +53,7 @@ $(function() {
 })
 
 //以下 画像サムネ生成
-$(function() {
+$(function () {
   function buildImg(imgSrc, lastModified) {
     var html = `
       <li>
@@ -66,15 +66,15 @@ $(function() {
     return html
   }
 
-  $('.dropbox--container__dropbox__file').change(function() {
+  $('.dropbox--container__dropbox__file').change(function () {
     var file = $(this).prop('files');
     var img_count = 1;
-    $(file).each(function(i) {
-      if (! file[i].type.match('image.*')) {
+    $(file).each(function (i) {
+      if (!file[i].type.match('image.*')) {
         return;
       }
       var reader = new FileReader();
-      reader.onload = function() {
+      reader.onload = function () {
         $('.dropbox--container__items ul').append(buildImg(reader.result, file[i].lastModified))
       }
       reader.readAsDataURL(file[i]);
@@ -85,12 +85,12 @@ $(function() {
 });
 
 //以下　サムネからfile削除
-$(function() {
-  $(document).on("click", ".dropbox--container__items__edit a", function(e){
+$(function () {
+  $(document).on("click", ".dropbox--container__items__edit a", function (e) {
     e.preventDefault();
     var clickedImageLastModified = $(this).parents().data("lastmodified");
-    for(var i in ArrayuploadedImages){
-      if(ArrayuploadedImages[i].lastModified === clickedImageLastModified){
+    for (var i in ArrayuploadedImages) {
+      if (ArrayuploadedImages[i].lastModified === clickedImageLastModified) {
         ArrayuploadedImages.splice(i, 1)
       }
     }
@@ -99,16 +99,16 @@ $(function() {
   })
 })
 
-$(function(){
-  $("form").on("submit", function(e){
+$(function () {
+  $("form").on("submit", function (e) {
     e.preventDefault();
-    if(ArrayuploadedImages.length === 0){
+    if (ArrayuploadedImages.length === 0) {
       alert("画像は必須です。")
       exit
     }
     var formData = new FormData($(this)[0]);
     formData.delete("item[image][image][]")
-    for(var i in ArrayuploadedImages){
+    for (var i in ArrayuploadedImages) {
       formData.append("item[image][image][]", ArrayuploadedImages[i])
     }
 
@@ -120,23 +120,23 @@ $(function(){
       processData: false,
       contentType: false
     })
-    .done(function(status){
-      if(status.status === "ok"){
-        window.location.href = "/"
-      }
-    })
-    .fail(function(){
-      $("form").unbind('submit').submit()
-    })
+      .done(function (status) {
+        if (status.status === "ok") {
+          window.location.href = "/"
+        }
+      })
+      .fail(function () {
+        $("form").unbind('submit').submit()
+      })
   })
 })
 
-$(function(){
-  $(document).on("input", "#item_price", function(){
+$(function () {
+  $(document).on("input", "#item_price", function () {
     var inputValue = parseInt($(this).val());
-    if(inputValue >= 300){
-      var fee = parseInt(inputValue*0.1)
-      var profit = inputValue-fee
+    if (inputValue >= 300) {
+      var fee = parseInt(inputValue * 0.1)
+      var profit = inputValue - fee
       var parentOfThis = $(this).parents(".item-form__group")
       var feeText = parentOfThis.find(".item-form__price--r").eq(1)
       feeText.empty().append("¥" + fee)
