@@ -1,21 +1,15 @@
 .item-box__container
-  %h1.item-box__h1 商品名
+  %h1.item-box__h1 #{@item.name}
   .item-box__main-content
     .item-box--l
       .item-box__main-content__img.owl-carousel.owl-theme.owl-carousel--item
-        .item-box__img{"data-hash": "zero"}
-          = image_tag("item1.jpg")
-        .item-box__img{"data-hash": "one"}
-          = image_tag("item2.jpg")
-        .item-box__img{"data-hash": "two"}
-          = image_tag("item3.jpg")
+        - @item.images.each_with_index do |image, i|
+          .item-box__img{"data-hash": "#{i}"}
+            = image_tag image.image.url     
       .item-box__main-content__thumbnail
-        = link_to "#zero" do
-          = image_tag 'item1.jpg', class: "item-box__thumbnail"
-        = link_to "#one" do
-          = image_tag 'item2.jpg', class: "item-box__thumbnail"
-        = link_to "#two" do
-          = image_tag 'item3.jpg', class: "item-box__thumbnail"
+        - @item.images.each_with_index do |image, i|
+          = link_to "##{i}" do
+            = image_tag image.image.url, class: "item-box__thumbnail"
     %table.item-box__main-content__table
       %tbody
         %tr
