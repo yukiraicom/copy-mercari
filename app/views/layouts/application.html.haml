@@ -10,7 +10,7 @@
   %body
     - flash.each do |key, value|
       = content_tag :div, value, class: key
-  - if controller.controller_name != "sessions" && controller.controller_name != "registrations" && !( controller.controller_name == "items" && controller.action_name == "new" ) && !(controller_name == "purchases")
+  - if controller.controller_name != "sessions" && controller.controller_name != "registrations" && !( controller.controller_name == "items" && controller.action_name != "show" ) && !(controller_name == "purchases")
     = render "shared/header"
   - else
     = render "shared/simple-logo"

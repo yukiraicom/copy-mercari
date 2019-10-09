@@ -79,7 +79,7 @@
       %span あんしん・あんぜんへの取り組み
 -if @item.user.id == current_user.id
   .exhibit-user__container
-    =link_to edit_user_path, class: "item-box__buy--btn" do
+    =link_to edit_item_path, class: "item-box__buy--btn" do
       商品の編集
     %p.exhibit-user--p or
     = button_tag class: "exhibit-user--btn" do
