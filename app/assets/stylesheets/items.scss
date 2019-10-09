@@ -216,3 +216,26 @@
   }
 }
 
+.exhibit-user{
+  &__container{
+    width: 700px;
+    padding: 24px 70px 24px 70px;
+    background: white;
+    margin: 40px auto 40px;
+  }
+  &--p{
+    text-align: center;
+  }
+  &--btn{
+    font-size: 20px;
+    text-decoration: none;
+    display: block;
+    height: 56px;
+    width: 100%;
+    margin: 16px 0 16px 0;
+    background: gray;
+    color: white;
+    line-height: 56px;
+    text-align: center;
+  }
+}
