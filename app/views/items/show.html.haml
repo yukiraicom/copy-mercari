@@ -19,57 +19,52 @@
             %div
               .item-box__ratings
                 %i.fas.fa-laugh.item-box__ratings-icon-good
-                %span 271
+                %span 0
               .item-box__ratings
                 %i.fas.fa-meh.item-box__ratings-icon-normal
-                %span 6
+                %span 0
               .item-box__ratings
                 %i.fas.fa-frown.item-box__ratings-icon-bad
                 %span 0
         %tr
           %th カテゴリー
           %td
-            %div レディース
+            %div #{@item.category.parent.parent.name}
             .item-detail-table-sub-category
               %i.fas.fa-chevron-right
-              バッグ
+              #{@item.category.parent.name}
             .item-detail-table-sub-sub-category
               %i.fas.fa-chevron-right
-              ショルダーバッグ
+              #{@item.category.name}
         %tr
           %th ブランド
           %td
             コーチ
         %tr
           %th 商品の状態
-          %td 目立った傷や汚れなし
+          %td #{@item.condition}
         %tr
           %th 配送料の負担
-          %td 送料込み(出品者負担)
+          %td #{@item.postage}
         %tr
           %th 配送の方法
           %td らくらくメルカリ便
         %tr
           %th 配送元地域
           %td
-            東京都
+            #{@item.ship_from}
         %tr
           %th 発送日の目安
-          %td 2~3日で発送
+          %td #{@item.days_before_shipment}
   .item-box__price--box
-    %span.item-box__price--box__price ¥ 2,000
+    %span.item-box__price--box__price ¥ #{@item.price}
     %span.item-box__price--box__tax  (税込)
     %span.item-box__price--box-shipping 送料込み
   = link_to new_purchase_path, class: "item-box__buy--btn" do
     購入画面に進む
   .item-box__description
     %p.item-box__description--p
-      Rady(レディー) 
-      リゾートフラワークッション
-      サイズ
-      約45cm×約45cm
-      部屋に飾っていただけで、クッションや枕としては使用していません。
-      傷や汚れはありません( •̤ᴗ•̤ )
+      #{@item.description}
   .item-box__button
     .item-box__button--l
       = button_tag class: "item-box__button--l__button" do
