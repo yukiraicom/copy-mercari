@@ -15,6 +15,12 @@
             .dropbox--container
               .dropbox--container__items
                 %ul
+                  - if @item.images[0].present?
+                    - @item.images.each do |image|
+                      %li{data: {id: image.id}}
+                        = image_tag image.image.url
+                        .dropbox--container__items__edit
+                          =link_to "削除", ""
               .dropbox--container__dropbox
                 = image.file_field :image, class: "dropbox--container__dropbox__file", id: "input--drop", multiple: "true", style: "display: none"
                 %p.dropbox--container__dropbox__font

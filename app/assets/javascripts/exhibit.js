@@ -1,5 +1,6 @@
 $(function () {
   ArrayuploadedImages = [];
+  DeleteImageList = [];
 
   function putCategoryOption(category) {
     var optionHtml = ""
@@ -95,38 +96,65 @@ $(function () {
     }
     //サムネを消す
     $(this).parents(".dropbox--container__items ul li").remove();
+
+    //updateアクションでdbから弾くリスト
+    DeleteImageList.push($(this).parents("li").data("id"));
   })
 })
 
 $(function () {
   $("form").on("submit", function (e) {
     e.preventDefault();
-    if (ArrayuploadedImages.length === 0) {
-      alert("画像は必須です。")
-      exit
-    }
     var formData = new FormData($(this)[0]);
     formData.delete("item[image][image][]")
     for (var i in ArrayuploadedImages) {
       formData.append("item[image][image][]", ArrayuploadedImages[i])
     }
 
-    $.ajax({
-      type: "POST",
-      url: "/items",
-      data: formData,
-      dataType: "json",
-      processData: false,
-      contentType: false
-    })
-      .done(function (status) {
-        if (status.status === "ok") {
-          window.location.href = "/"
-        }
+    for (var i in DeleteImageList) {
+      formData.append("deleteImageList[]", DeleteImageList[i])
+    }
+
+    if(window.location.pathname.match(/\/items\/new/)){
+      $.ajax({
+        type: "POST",
+        url: "/items",
+        data: formData,
+        dataType: "json",
+        processData: false,
+        contentType: false
       })
-      .fail(function () {
-        $("form").unbind('submit').submit()
+        .done(function (status) {
+          if (status.status === "ok") {
+            window.location.href = "/"
+          }
+        })
+        .fail(function () {
+          $("form").unbind('submit').submit()
+        })
+    } else {
+      url = "/items/"+ parseInt(window.location.pathname.match(/\d+/))
+      formData.append("itemId", parseInt(window.location.pathname.match(/\d+/)))
+      $.ajax({
+        type: "PATCH",
+        url: url,
+        data: formData,
+        dataType: "json",
+        processData: false,
+        contentType: false
       })
+        .done(function (status) {
+          if (status.status === "ok") {
+            window.location.href = "/"
+          }
+        })
+        .fail(function () {
+          debugger
+          $("form").unbind('submit').submit()
+        })
+    }
+
+   
   })
 })
 
