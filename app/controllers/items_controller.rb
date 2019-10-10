@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
     @item = Item.new
     @images = Image.new
     @category = Category.where(parent_id: 0)
+    render "_form"
   end
 
   def create
@@ -31,23 +32,23 @@ class ItemsController < ApplicationController
     @firstCategory = Category.where(parent_id: @category.parent.parent.parent_id)
     @secondCategory = Category.where(parent_id: @category.parent.parent_id)
     @thirdCategoryList = Category.where(parent_id: @category.parent_id)
-    @images.each do |image|
-      image.image.cache!
-    end
-    render new_item_path #仮
+    render "_form"
   end
 
   def update
     if itemSave("update")
-      @updateItem = Item.find(params[:itemId])
-      @updateItem.update(@item.attributes)
       render json: {'status': "ok"}
     else
       unless request.xhr?
-        @errors = @item.errors.full_messages
-        @images = Image.new
-        @category = Category.where(parent_id: 0)
-        render :new
+        binding.pry
+        @errors = @updateItem.errors.full_messages
+        @item = Item.find(params[:id])
+        @images = Item.find(params[:id]).images
+        @category = Item.find(params[:id]).category
+        @firstCategory = Category.where(parent_id: @category.parent.parent.parent_id)
+        @secondCategory = Category.where(parent_id: @category.parent.parent_id)
+        @thirdCategoryList = Category.where(parent_id: @category.parent_id)
+        render "_form"
       else request.xhr?
         render plain: ""
       end
@@ -104,20 +105,32 @@ class ItemsController < ApplicationController
             params[:deleteImageList].each do |d|
               Image.find(i.id).delete if i.id === d.to_i
             end
-          
           end
         end
       end
 
-      begin
-        @item.id = @item.id = params[:itemId] if callAction == "update"
+      if(params.permit![:item][:image][:image] rescue nil) != nil
         params.permit![:item][:image][:image].each do |x|
-          Item.find(params[:itemId]).images.create(image: x) if @item.valid?
+          if callAction == "create"
+            @item.images.create(image: x) if @item.save
+          else
+            Item.find(params[:itemId]).images.create(image: x) if @item.valid?
+          end
         end
-      rescue
-        false
       end
-      return @item
+
+      if callAction == "create"
+        @item.save
+      elsif callAction == "update"
+          if params[:itemId].present?
+            #jsからのリクエストにはitemIdが存在する
+            @item.id = @item.id = params[:itemId] if callAction == "update"
+            @updateItem = Item.find(params[:itemId])
+          elsif params[:id].present?
+            #htmlからのリクエスト(失敗時)ではidが存在する
+            @updateItem = Item.find(params[:id]) 
+          end
+          @updateItem.update(@item.attributes)
+      end
   end
 end
-

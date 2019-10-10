@@ -149,7 +149,6 @@ $(function () {
           }
         })
         .fail(function () {
-          debugger
           $("form").unbind('submit').submit()
         })
     }
