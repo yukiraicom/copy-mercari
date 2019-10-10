@@ -152,8 +152,6 @@ $(function () {
           $("form").unbind('submit').submit()
         })
     }
-
-   
   })
 })
 

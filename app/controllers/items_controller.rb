@@ -127,7 +127,7 @@ class ItemsController < ApplicationController
             @item.id = @item.id = params[:itemId] if callAction == "update"
             @updateItem = Item.find(params[:itemId])
           elsif params[:id].present?
-            #htmlからのリクエスト(失敗時)ではidが存在する
+            #htmlからのリクエスト(失敗時)
             @updateItem = Item.find(params[:id]) 
           end
           @updateItem.update(@item.attributes)
