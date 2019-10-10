@@ -40,7 +40,6 @@ class ItemsController < ApplicationController
       render json: {'status': "ok"}
     else
       unless request.xhr?
-        binding.pry
         @errors = @updateItem.errors.full_messages
         @item = Item.find(params[:id])
         @images = Item.find(params[:id]).images
