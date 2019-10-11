@@ -26,13 +26,13 @@ $(function () {
 
   $(document).on("change", ".item-form__select-box#item_category_id", function () {
     var thisSelecter = $(this)
+    var selectedItemFormDiv = thisSelecter.parents(".item-form__dev")
     selected_number = thisSelecter.val()
     var itemFormDev = $(".item-form__dev#categoty")
     var itemFormGroup = thisSelecter.parents(".item-form__group")
     var previousOptions = itemFormGroup.find(".item-form__dev")
     var optionsParentId = itemFormDev.data("parent-id")
     itemFormGroup.empty().append("<label>カテゴリー</label><span class='form-require'>必須</span>")
-    // .append("<span class='form-require'>必須</span>")
 
     $.ajax({
       type: "GET",
@@ -41,16 +41,23 @@ $(function () {
     })
       .done(function (category) {
         var previousId = 0
-        previousOptions.each(function (i, option) {
-          if ($(option).data("parent-id") == 0 || $(option).data("parent-id") == previousId) {
-            itemFormGroup.append($(option))
-            previousId = $(option).find('.item-form__select-box#item_category_id').val()
+        for (preselecter of previousOptions) {
+          previousId = $(preselecter).find('.item-form__select-box#item_category_id').val()
+          if (category.length == 0) {
+            itemFormGroup.append(preselecter)
+          } else if (previousId == category[0].parent_id) {
+            itemFormGroup.append(preselecter)
+          } else if ($(preselecter).data("parent-id") == 0) {
+            itemFormGroup.append(preselecter)
           }
-        })
-        if (category.length != 0) itemFormGroup.append(buildCategory(category))
+        }
+        if (category.length != 0) {
+          itemFormGroup.append(buildCategory(category))
+        }
       })
   })
 })
+
 
 //以下 画像サムネ生成
 $(function () {

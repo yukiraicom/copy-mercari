@@ -54,15 +54,15 @@
               %span.form-require 必須
               .item-form__dev#categoty{data: {parent: {id: @category.parent.parent.parent_id}}}
                 .item-form__select-wrap
-                  = f.select :category_id, @firstCategory.all.collect {|c| [c.name, c.id]}, {selected: @category.parent.parent}, class: "item-form__select-box"
+                  = f.select :category_id, @firstCategory.all.collect {|c| [c.name, c.id]}, {selected: @category.parent.parent.id}, class: "item-form__select-box"
                   = fa_icon "chevron-down", class: "item-form__select-icon"
               .item-form__dev#categoty{data: {parent: {id: @category.parent.parent_id}}}
                 .item-form__select-wrap
-                  = f.select :category_id, @secondCategory.all.collect {|c| [c.name, c.id]}, {selected: @category.parent}, class: "item-form__select-box"
+                  = f.select :category_id, @secondCategory.all.collect {|c| [c.name, c.id]}, {selected: @category.parent.id}, class: "item-form__select-box"
                   = fa_icon "chevron-down", class: "item-form__select-icon"
               .item-form__dev#categoty{data: {parent: {id: @category.parent_id}}}
                 .item-form__select-wrap
-                  = f.select :category_id, @thirdCategoryList.all.collect {|c| [c.name, c.id]}, {selected: @category}, class: "item-form__select-box"
+                  = f.select :category_id, @thirdCategoryList.all.collect {|c| [c.name, c.id]}, {selected: @category.id}, class: "item-form__select-box"
                   = fa_icon "chevron-down", class: "item-form__select-icon"
           .item-form__group
             %label 商品の状態
