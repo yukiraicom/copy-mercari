@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
         @secondCategory = Category.where(parent_id: @category.parent.parent_id)
         @thirdCategoryList = Category.where(parent_id: @category.parent_id)
         render "_form"
-      else request.xhr?
+      else
         render plain: ""
       end
     end
