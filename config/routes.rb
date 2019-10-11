@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   resources :adresses, only: [:edit, :update]
   resources :credits, only: [:index, :new, :create, :destroy]
-  resources :items, only: [:new, :create, :show, :edit, :update]
+  resources :items, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :purchases, only: [:new]
   resources :top, only: [:index]
   namespace :api do

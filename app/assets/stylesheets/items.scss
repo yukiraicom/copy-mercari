@@ -222,6 +222,9 @@
     padding: 24px 70px 24px 70px;
     background: white;
     margin: 40px auto 40px;
+    & a{
+      text-decoration: none;
+    }
   }
   &--p{
     text-align: center;
