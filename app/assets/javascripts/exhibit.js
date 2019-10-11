@@ -1,5 +1,6 @@
 $(function () {
   ArrayuploadedImages = [];
+  DeleteImageList = [];
 
   function putCategoryOption(category) {
     var optionHtml = ""
@@ -25,13 +26,13 @@ $(function () {
 
   $(document).on("change", ".item-form__select-box#item_category_id", function () {
     var thisSelecter = $(this)
+    var selectedItemFormDiv = thisSelecter.parents(".item-form__dev")
     selected_number = thisSelecter.val()
     var itemFormDev = $(".item-form__dev#categoty")
     var itemFormGroup = thisSelecter.parents(".item-form__group")
     var previousOptions = itemFormGroup.find(".item-form__dev")
     var optionsParentId = itemFormDev.data("parent-id")
     itemFormGroup.empty().append("<label>カテゴリー</label><span class='form-require'>必須</span>")
-    // .append("<span class='form-require'>必須</span>")
 
     $.ajax({
       type: "GET",
@@ -40,16 +41,23 @@ $(function () {
     })
       .done(function (category) {
         var previousId = 0
-        previousOptions.each(function (i, option) {
-          if ($(option).data("parent-id") == 0 || $(option).data("parent-id") == previousId) {
-            itemFormGroup.append($(option))
-            previousId = $(option).find('.item-form__select-box#item_category_id').val()
+        for (preselecter of previousOptions) {
+          previousId = $(preselecter).find('.item-form__select-box#item_category_id').val()
+          if (category.length == 0) {
+            itemFormGroup.append(preselecter)
+          } else if (previousId == category[0].parent_id) {
+            itemFormGroup.append(preselecter)
+          } else if ($(preselecter).data("parent-id") == 0) {
+            itemFormGroup.append(preselecter)
           }
-        })
-        if (category.length != 0) itemFormGroup.append(buildCategory(category))
+        }
+        if (category.length != 0) {
+          itemFormGroup.append(buildCategory(category))
+        }
       })
   })
 })
+
 
 //以下 画像サムネ生成
 $(function () {
@@ -95,38 +103,62 @@ $(function () {
     }
     //サムネを消す
     $(this).parents(".dropbox--container__items ul li").remove();
+
+    //updateアクションでdbから弾くリスト
+    DeleteImageList.push($(this).parents("li").data("id"));
   })
 })
 
 $(function () {
   $("form").on("submit", function (e) {
     e.preventDefault();
-    if (ArrayuploadedImages.length === 0) {
-      alert("画像は必須です。")
-      exit
-    }
     var formData = new FormData($(this)[0]);
     formData.delete("item[image][image][]")
     for (var i in ArrayuploadedImages) {
       formData.append("item[image][image][]", ArrayuploadedImages[i])
     }
 
-    $.ajax({
-      type: "POST",
-      url: "/items",
-      data: formData,
-      dataType: "json",
-      processData: false,
-      contentType: false
-    })
-      .done(function (status) {
-        if (status.status === "ok") {
-          window.location.href = "/"
-        }
+    for (var i in DeleteImageList) {
+      formData.append("deleteImageList[]", DeleteImageList[i])
+    }
+
+    if(window.location.pathname.match(/\/items\/new/)){
+      $.ajax({
+        type: "POST",
+        url: "/items",
+        data: formData,
+        dataType: "json",
+        processData: false,
+        contentType: false
       })
-      .fail(function () {
-        $("form").unbind('submit').submit()
+        .done(function (status) {
+          if (status.status === "ok") {
+            window.location.href = "/"
+          }
+        })
+        .fail(function () {
+          $("form").unbind('submit').submit()
+        })
+    } else {
+      url = "/items/"+ parseInt(window.location.pathname.match(/\d+/))
+      formData.append("itemId", parseInt(window.location.pathname.match(/\d+/)))
+      $.ajax({
+        type: "PATCH",
+        url: url,
+        data: formData,
+        dataType: "json",
+        processData: false,
+        contentType: false
       })
+        .done(function (status) {
+          if (status.status === "ok") {
+            window.location.href = "/"
+          }
+        })
+        .fail(function () {
+          $("form").unbind('submit').submit()
+        })
+    }
   })
 })
 
