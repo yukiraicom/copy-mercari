@@ -98,14 +98,12 @@ class ItemsController < ApplicationController
 
       if callAction == "create"
         @item.save
-      else
-        unless params[:deleteImageList].nil?
+      elsif params.has_key?(:deleteImageList)
           Item.find(params[:itemId]).images.each do |i|
             params[:deleteImageList].each do |d|
               Image.find(i.id).delete if i.id === d.to_i
             end
           end
-        end
       end
 
       if(params.permit![:item][:image][:image] rescue nil) != nil
