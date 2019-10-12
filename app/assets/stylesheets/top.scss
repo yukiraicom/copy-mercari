@@ -1,20 +1,23 @@
+.item-label{
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  background-color: white;
+}
 .all-item{
   width: 660px;
   margin: 0 auto;
-  & h2{
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-  }
   & a{
     float: left;
   }
   &__box{
+    margin: 20px;
     & a{
       margin-left: 10px;
       margin-right: 10px;
       text-decoration: none;
       color: black;
+      background-color: white;
     }
     &__photo{
       & img{
