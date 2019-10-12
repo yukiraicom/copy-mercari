@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :move_to_login, expect: :index
+
   def new
     @item = Item.new
     @images = Image.new
@@ -134,5 +136,9 @@ class ItemsController < ApplicationController
           end
           @updateItem.update(@item.attributes)
       end
+  end
+
+  def move_to_login
+    redirect_to new_user_session_path unless user_signed_in?
   end
 end

@@ -9,12 +9,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback("google")
   end
 
-  def callback(provider)
-    # You need to implement the method below in your model (e.g. app/models/user.rb)
-    @user = User.from_omniauth(request.env["omniauth.auth"])
+  def after_sign_in_path_for(resource) #sign_in_and_redirectで呼び出される。
+    if current_user.adress.nil?
+      users_sign_up2_path 
+    else
+      super(resource)
+    end
+  end
 
+  def callback(provider)
+    @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.persisted?
-      sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
+      sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
     else
       session["devise.#{provier}_data"] = request.env["omniauth.auth"]
