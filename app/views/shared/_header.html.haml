@@ -4,7 +4,7 @@
       = link_to root_path do
         = image_tag("logo.svg")
       = form_tag  "#" do
-        = text_field :item, :name, placeholder: "キーワードから探す"
+        = text_field :item, :name, value: "", placeholder: "キーワードから探す"
     .header__inner__nav
       %p.header__inner__nav__p カテゴリーから探す
       %p.header__inner__nav__p ブランドから探す
