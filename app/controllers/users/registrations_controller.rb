@@ -37,14 +37,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def credit_create
-    Credit.create(
+    @credit = Credit.new(
       user_id: current_user.id,
       card_number: credit_params[:card_number].to_i,
       expiration_month: credit_params[:expiration_month].to_i,
       expiration_year: credit_params[:expiration_year].to_i,
       security_code: credit_params[:security_code].to_i
     )
-    redirect_to users_sign_up_fin_path
+    if @credit.save
+      redirect_to users_sign_up_fin_path
+    else
+      render :credit
+    end
   end
 
   def fin
