@@ -9,6 +9,7 @@ class Adress < ApplicationRecord
     validates :postal_code
     validates :prefecture #enumだからstringになっちゃう？
     validates :city
+    validates :birthday
     validates :street
     validates :building_name
     validates :tel

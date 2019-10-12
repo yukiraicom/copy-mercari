@@ -1,5 +1,6 @@
-= render 'users/logo'
 .devise-content
+  - @user_adress.errors.full_messages.each do |e|
+    %p #{e}
   %h2 住所入力
   =form_for(@user_adress, url: users_sign_up2_path(@user_adress)) do |f|
     .field

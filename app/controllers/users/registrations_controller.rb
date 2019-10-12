@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def adress_create
-    Adress.create(
+    @user_adress = Adress.new(
       user_id: current_user.id, 
       first_name: user_params[:first_name], 
       last_name: user_params[:last_name], 
@@ -24,7 +24,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       building_name: user_params[:building_name],
       tel: user_params[:tel]
       )
-    redirect_to users_sign_up3_path
+    if @user_adress.save
+      redirect_to users_sign_up3_path
+    else
+      @user_adress
+      render :adress
+    end
   end
 
   def credit
@@ -62,12 +67,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def birthday_params
-    Date.new(params.require(:adress)[:"birthday(1i)"].to_i,
-             params.require(:adress)[:"birthday(2i)"].to_i,
-             params.require(:adress)[:"birthday(3i)"].to_i)
+    begin
+      Date.new(params.require(:adress)[:"birthday(1i)"].to_i,
+              params.require(:adress)[:"birthday(2i)"].to_i,
+              params.require(:adress)[:"birthday(3i)"].to_i)
+    rescue
+      return nil
+    end
   end
   
   def credit_params
     params.require(:credit)
   end
+
 end
