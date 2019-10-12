@@ -8,7 +8,7 @@
       = form_for @credit, html:{ class: "container--mypage__content__edit__identification" } do |f|
         .container--mypage__content__edit__identification__form
           カード番号
-          = f.text_field :card_number, placeholder: "半角数字のみ" , class: "container--mypage__content__edit__identification__form__input"
+          = f.text_field :card_number, placeholder: "半角数字のみ" , class: "container--mypage__content__edit__identification__form__input", value: "4242424242424242"
           %ul.container--mypage__content__edit__identification__form__ul
             %li.container--mypage__content__edit__identification__form__ul__li<
               = image_tag "visa.svg", class: "container--mypage__content__edit__identification__form__img"
@@ -51,7 +51,7 @@
           年
         .container--mypage__content__edit__identification__form
           = f.label :セキュリティコード
-          = f.text_field :security_code, placeholder: "カード背面４桁もしくは３桁の番号", class: "container--mypage__content__edit__identification__form__input"
+          = f.text_field :security_code, placeholder: "カード背面４桁もしくは３桁の番号", class: "container--mypage__content__edit__identification__form__input", value: "123"
         .container--mypage__content__edit__identification__form
           = button_tag "追加する", class: "container--mypage__content__logout__link"
 - breadcrumb :creditNew
