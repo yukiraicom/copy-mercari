@@ -7,6 +7,7 @@
         = image_tag @item.images[0].image.url, class: "purchase__inner--h3__img"
       %p.purchase__inner--p #{@item.name}
       = form_tag(purchases_path, method: :post) do
+        = hidden_field_tag :item_id, @item.id
         .purchase__form--p
           ¥ #{@item.price}
           %span.purchase__form--span #{@item.postage}
