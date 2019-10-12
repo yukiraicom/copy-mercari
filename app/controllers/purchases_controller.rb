@@ -1,16 +1,16 @@
 class PurchasesController < ApplicationController
-  
+
   def new
     @item = Item.find(params[:id])
   end
 
   def create
-    customer_id = current_user.card.customer_id
+    customer_id = current_user.credit.customer_id
     charge = Payjp::Charge.create(
-    amount: 3500,
+    amount: params[:item_price],
     currency: 'jpy',
     customer: customer_id,
     )
-    redirect_to "/products"
+    redirect_to root_path
   end
 end
