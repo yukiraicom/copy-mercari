@@ -1,20 +1,23 @@
 .search-container
   .side-content
   .result-content
-    %h2.result-content-h2 の検索結果
-    .result-content-number
-      #{@item.length}件の表示
-    .result-content__items
-      - @item.each do |item|
-        .result-content__box
-          = link_to item_path item.id do
-            .result-content__image
-              = image_tag item.images[0].image.url
-            .result-content__body
-              %h3.result-content-h3 #{item.name}
-              .result-content__num
-                .result-content__price
-                  ¥ #{item.price}
-                .result-content__like
-                  %i.fa.fa-heart-o
-                  %span 6
+    - if @item.length != 0
+      %h2.result-content-h2 の検索結果
+      .result-content-number
+        #{@item.length}件の表示
+      .result-content__items
+        - @item.each do |item|
+          .result-content__box
+            = link_to item_path item.id do
+              .result-content__image
+                = image_tag item.images[0].image.url
+              .result-content__body
+                %h3.result-content-h3 #{item.name}
+                .result-content__num
+                  .result-content__price
+                    ¥ #{item.price}
+                  .result-content__like
+                    %i.fa.fa-heart-o
+                    %span 6
+    - else
+      該当する商品はありません
