@@ -4,7 +4,7 @@
       = link_to root_path do
         = image_tag("logo.svg")
       - if controller.controller_name != "search"
-        = form_tag  "#" do
+        = form_tag search_index_path do
           = text_field :item, :name, value: "", placeholder: "キーワードから探す"
       - else
         = search_form_for @q, method: :post, url: search_index_path do |f|
