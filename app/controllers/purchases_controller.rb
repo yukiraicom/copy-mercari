@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
 
   def new
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:format])
   end
 
   def create
