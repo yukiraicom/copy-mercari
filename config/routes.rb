@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :purchases, only: [:new, :create]
   resources :top, only: [:index]
+  resources :search, only: [:index, :create]
   namespace :api do
     resources :item, only: [:index]
   end
