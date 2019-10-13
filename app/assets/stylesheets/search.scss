@@ -1,14 +1,80 @@
 .search-container{
+  margin: 40px auto 0;
+  width: 1000px;
+  margin: 40 auto 0;
   .side-content{
     float: left;
     width: 300px;
-    height: 500px;
     margin: 0 40px 0 0;
-    background-color: blue;
+    .search{
+      &-extend-container{
+      }
+      &__select-box{
+        position: relative;
+        & select{
+          width: 100%;
+          height: 50px;
+          -webkit-appearance: none;
+          border-radius: 4px;
+          padding: 0 16px;
+          background-color: white;
+        }
+      }
+      &__select-detailedSearch{
+        margin: 40px 0 0;
+        padding: 16px;
+        background-color: white;
+        .form-group{
+          position: relative;
+          margin: 24px 0 0 ;
+          .detailSelect{
+            position: relative;
+            .detailInput{
+              width: 35%;
+              margin: 8px 0 0;
+              height: 10px;
+              padding: 8px 8px 8px;
+            }
+            .select-default{
+              width: 100%;
+              position: relative;
+              height: 48px;
+              padding: 0 16px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              font-size: 16px;
+              -webkit-appearance: none;
+              background-color: white;
+            }
+          }
+          i{
+            position: absolute;
+            bottom: 15px;
+            right: 10px;
+            z-index: 2;
+          }
+          .price-fa{
+            position: absolute;
+            top:  40px;
+            right: 10px;
+            z-index: 2;
+          }
+        }
+        .detailInput{
+          margin: 8px 0 0;
+          height: 25px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          width: calc( 100% - 32px );
+        }
+      }
+    }
+    
   }
   .result-content{
     float: right;
-    width:  500px;
+    width:  650px;
     &-h2{
       margin: 0 0 8px;
     }

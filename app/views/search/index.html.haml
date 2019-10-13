@@ -1,5 +1,74 @@
 .search-container
   .side-content
+    .search-extend-container
+      .search__select-box
+        %i.fa.fa-chevron-down.item-form__select-icon
+        %select{:name => "sort_order"}
+          %option{:value => ""} 並び替え
+          %option{:value => "price_asc"}
+            価格の安い順
+          %option{:value => "price_desc"}
+            価格の高い順
+          %option{:value => "created_asc"}
+            出品の古い順
+          %option{:value => "created_desc"}
+            出品の新しい順
+          %option{:value => "like_desc"}
+            いいね!の多い順
+      .search__select-detailedSearch
+        %h3 詳細検索
+        .form-group
+          %label
+            %i.icon
+            %span キーワードを追加する
+          %input.detailInput{:name => "", :placeholder => "例）値下げ", :type => "text", :value => ""}/
+        .form-group
+          %label
+            %i.fa.fa-chevron-down
+            %span カテゴリーを選択する
+          .detailSelect
+            %select.select-default{:name => ""}
+              %option{:value => ""} すべて
+        .form-group
+          %label
+            %i.icon
+            %span キーワードを追加する
+          %input.detailInput{:name => "keyword", :placeholder => "未実装", :type => "text", :value => ""}/
+        .form-group
+          %label
+            %i.fa.fa-chevron-down
+            %span サイズを指定する
+          .detailSelect
+            %select.select-default{:name => ""}
+              %option{:value => ""} すべて
+        .form-group
+          %label
+            %i.fa.fa-chevron-down.price-fa
+            %span 価格
+          .detailSelect
+            %select.select-default{:name => ""}
+              %option{:value => ""} すべて
+            %input.detailInput{:name => "price_min", :placeholder => "¥ Min", :type => "number", :value => ""}/
+            %span ~
+            %input.detailInput{:name => "price_max", :placeholder => "¥ Max", :type => "number", :value => ""}/
+        .form-group
+          %label
+            %i.icon
+            %span 商品の状態
+        .form-group
+          %label
+            %i.icon
+            %span 配送料の負担
+        .form-group
+          %label
+            %i.icon
+            %span 配送料の負担
+        .search__select-detailedSearch-end
+          .detail-reset
+            リセット
+          %button 完了
+
+
   .result-content
     - if @item.length != 0
       %h2.result-content-h2 の検索結果
