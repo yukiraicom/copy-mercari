@@ -16,6 +16,22 @@
   def create
     credit = Credit.new(credit_params)
     if credit.save
+      token = Payjp::Token.create({
+        :card => {
+          :number => credit.card_number,
+          :cvc => credit.security_code,
+          :exp_month => credit.expiration_month,
+          :exp_year => 2000 + credit.expiration_year
+        }},
+        {
+          'X-Payjp-Direct-Token-Generate': 'true'
+        } 
+      ) #トークン作成 
+      customer = Payjp::Customer.create(
+        description: 'test',
+        card: token.id
+      )
+      credit.update(pay_id: token.id, customer_id: customer.id)
       redirect_to credits_path
     else
       @credit_error = credit.errors.full_messages

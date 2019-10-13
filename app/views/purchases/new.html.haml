@@ -4,32 +4,35 @@
   .purchase--item
     .purchase__inner
       %h3.purchase__inner--h3
-        = image_tag "item1.jpg", class: "purchase__inner--h3__img"
-      %p.purchase__inner--p ワンピースグレー
-      %form
+        = image_tag @item.images[0].image.url, class: "purchase__inner--h3__img"
+      %p.purchase__inner--p #{@item.name}
+      = form_tag(purchases_path, method: :post) do
+        = hidden_field_tag :item_id, @item.id
         .purchase__form--p
-          ¥ 1,400
-          %span.purchase__form--span 送料込み
+          ¥ #{@item.price}
+          %span.purchase__form--span #{@item.postage}
         = button_tag class: "purchase__form--button" do
           ポイントはありません
         .purchase__form--p-sell-contain
           %p.purchase__form--p--sell.purchase__form--p--sell-l 支払い金額
-          %p.purchase__form--p--sell.purchase__form--p--sell-r ¥ 1,400
+          %p.purchase__form--p--sell.purchase__form--p--sell-r ¥ #{@item.price}
+          = hidden_field_tag :item_price, @item.price
+
         = button_tag class: "purchase__form--button-red" do
           購入する
     .purchase__inner--user-info
       .purchase__inner--user-info__inner
         %h3.purchase__inner--user-info-h3 配送先
         .purchase__inner--user-info--adress
-          %p 〒000-0000
-          %p 愛知県名古屋市守山師山未区翠松尾羽園邪馬1-7-999
-          %p 山田太郎
+          %p 〒#{current_user.adress.postal_code}
+          %p #{current_user.adress.prefecture} #{current_user.adress.city} #{current_user.adress.street} #{current_user.adress.building_name}
+          %p #{current_user.nickname}
         = link_to "変更する", "#", class: "purchase__inner--a"
     .purchase__inner--buy-user-info
       .purchase__inner--buy-user-info--inner
         %h3.purchase__inner--buy-user-info--inner-h3 支払方法
         %p.purchase__inner--buy-user-info--inner-p ****************
-        %p.purchase__inner--buy-user-info--inner-p 1/1
+        %p.purchase__inner--buy-user-info--inner-p #{current_user.credit.expiration_month}/#{current_user.credit.expiration_year}
         %figure.purchase__inner--buy-user-info--fig
           = image_tag "visa.svg", class: "purchase__inner--buy-user-info-img"
         = link_to "変更する", "#", class: "purchase__inner--a"
