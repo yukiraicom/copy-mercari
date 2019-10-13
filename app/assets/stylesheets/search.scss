@@ -7,8 +7,6 @@
     width: 300px;
     margin: 0 40px 0 0;
     .search{
-      &-extend-container{
-      }
       &__select-box{
         position: relative;
         & select{
@@ -59,6 +57,16 @@
             right: 10px;
             z-index: 2;
           }
+          &__status{
+            .checkbox{
+              display: inline-block;
+              width: 48%;
+              vertical-align: middle;
+            }
+          }
+          span{
+            font-size: 20px;
+          }
         }
         .detailInput{
           margin: 8px 0 0;
@@ -68,9 +76,32 @@
           border: 1px solid #ccc;
           width: calc( 100% - 32px );
         }
+        &-end{
+          height: 90px;
+          padding: 40px 0 0;
+          .detail-reset{
+            float: left;
+            width: 45%;
+            background: #aaa;
+            border: 1px solid #aaa;
+            color: #fff;
+            display: block;
+            line-height: 48px;
+            font-size: 14px;
+            text-align: center;
+          }
+          button{
+            float: right;
+            width: 45%;
+            background: #ea352d;
+            color: #fff;
+            display: block;
+            line-height: 48px;
+            text-align: center;
+          }
+        }
       }
     }
-    
   }
   .result-content{
     float: right;
@@ -104,8 +135,8 @@
       padding: 4px 12px 4px 8px;
       border-radius: 0 16px 16px 0;
       font-weight: 600;
-      color: #fff;
-      background-color: rgba(0,0,0,0.3);
+      color: white;
+      background-color: $priceBack;
     }
     &__like{
       position: absolute;
