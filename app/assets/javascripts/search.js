@@ -8,7 +8,7 @@ $(function () {
     }
     function buildCategory(category) {
       var html = `
-        <select class="item-form__select-box" name="q[category_id_cont_all]" id="search_category_id" data-parent-id="${category[0].parent_id}">
+        <select class="item-form__select-box" name="q[category_id_cont_all][]" id="search_category_id" data-parent-id="${category[0].parent_id}">
           <option value="">---</option>
           ${putCategoryOption(category)}
         </select>

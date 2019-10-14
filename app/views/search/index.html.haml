@@ -27,7 +27,8 @@
             %i.fa.fa-chevron-down
             %span カテゴリーを選択する
           .detailSelect
-            = f.select :category_id_cont_all, @category.all.collect {|c| [c.name, c.id]}, {include_blank: "---"}, class: "item-form__select-box", id: "search_category_id", data: {parent_id: 0}
+            = select_tag 'q[category_id_cont_all][]', options_for_select(@category.all.collect {|c| [c.name, c.id]}), class: "item-form__select-box", id: "search_category_id", data: {parent_id: 0}, include_blank: "---"
+
         .form-group
           %label
             %i.icon
