@@ -21,13 +21,13 @@
           %label
             %i.icon
             %span キーワードを追加する
-          %input.detailInput{:name => "", :placeholder => "例）値下げ", :type => "text", :value => ""}/
+          = f.search_field :name_cont_all, class: "detailInput", plaseholder: "例）値下げ"
         .form-group
           %label
             %i.fa.fa-chevron-down
             %span カテゴリーを選択する
           .detailSelect
-            = f.select :category_id, @category.all.collect {|c| [c.name, c.id]}, {include_blank: "---"}, class: "item-form__select-box", id: "search_category_id", data: {parent_id: 0}
+            = f.select :category_id_cont_all, @category.all.collect {|c| [c.name, c.id]}, {include_blank: "---"}, class: "item-form__select-box", id: "search_category_id", data: {parent_id: 0}
         .form-group
           %label
             %i.icon
@@ -45,24 +45,25 @@
             %i.fa.fa-chevron-down.price-fa
             %span 価格
           .detailSelect
-            %select.select-default{:name => ""}
+            %select.select-default{:name => "q[price]"}
               %option{:value => ""} すべて
               %option{:value => "300-1000"}
-                300 ~ 1000
+                300以上 ~ 1000未満
               %option{:value => "1000-5000"}
-                1000 ~ 5000
+                1000以上 ~ 5000未満
               %option{:value => "5000-10000"}
-                5000 ~ 10000
+                5000以上 ~ 10000未満
               %option{:value => "10000-30000"}
-                10000 ~ 30000
+                10000以上 ~ 30000未満
               %option{:value => "30000-50000"}
-                30000 ~ 50000
+                30000以上 ~ 50000未満
               %option{:value => "50000"}
-                50000 ~
+                50000以上 ~
 
-            %input.detailInput{:name => "price_min", :placeholder => "¥ Min", :type => "number", :value => ""}/
+            = f.number_field :price_gteq, class: "detailInput", placeholder: "¥ Min"
             %span ~
-            %input.detailInput{:name => "price_max", :placeholder => "¥ Max", :type => "number", :value => ""}/
+            = f.number_field :price_lt, class: "detailInput", placeholder: "¥ Max"
+
         .form-group
           %label
             %i.icon
@@ -74,7 +75,7 @@
               %label{:for => "condition_all"} すべて
             - @conditions.each_with_index do |condition, i|
               .checkbox
-                %input{:name => "", :type => "checkbox", :value => i+1 }/
+                = f.check_box :condition_eq_any, { multiple: true }, i+1, nil
                 %i.icon-check
                 %label{:for => "condition_all"} #{condition}
 
@@ -89,7 +90,7 @@
               %label{:for => "condition_all"} すべて
             - @postages.each_with_index do |postage, i|
               .checkbox
-                %input{:name => "", :type => "checkbox", :value => i+1 }/
+                = f.check_box :postage_eq_any, { multiple: true }, i+1, nil
                 %i.icon-check
                 %label{:for => "condition_all"} #{postage}
         .form-group
@@ -103,7 +104,7 @@
               %label{:for => "condition_all"} すべて
             - @status.each_with_index do |status, i|
               .checkbox
-                %input{:name => "", :type => "checkbox", :value => i+1 }/
+                = f.check_box :status_eq_any, { multiple: true }, i+1, nil
                 %i.icon-check
                 %label{:for => "condition_all"} #{status}
         .search__select-detailedSearch-end

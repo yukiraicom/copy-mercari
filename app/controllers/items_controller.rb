@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
         @errors = @item.errors.full_messages
         @images = Image.new
         @category = Category.where(parent_id: 0)
-        render :new
+        render "_form"
       else request.xhr?
         render plain: ""
       end
