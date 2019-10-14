@@ -8,6 +8,7 @@ class CreateItems < ActiveRecord::Migration[5.1]
       t.integer :postage, null: false
       t.integer :ship_from, null: false
       t.integer :days_before_shipment, null: false
+      t.timestamps
     end
   end
 end

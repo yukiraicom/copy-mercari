@@ -45,4 +45,7 @@ $(function () {
         }
       })
   })
+  $(".search-extend-container").on("change", "#sortSelect", function () {
+    a = $(this).parents(".search-extend-container").submit()
+  })
 })

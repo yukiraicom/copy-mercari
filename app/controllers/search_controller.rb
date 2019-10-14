@@ -24,7 +24,7 @@ class SearchController < ApplicationController
   def simpleSearch(searchItemName)
     paramsSearchWords = {}
     paramsSearchWords.store("name_cont_all", searchItemName)
-    return paramsSearchWordse
+    return paramsSearchWords
   end
   
   def detailSearch(params)
