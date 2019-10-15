@@ -50,7 +50,6 @@ test:
 production:
   <<: *default
   database: copy-mercari_production
-  username: copy-mercari
+  username: root
   password: <%= ENV['COPY-MERCARI_DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
-  
