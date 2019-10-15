@@ -1,0 +1,136 @@
+.search-container
+  .side-content
+    = search_form_for @q, class: "search-extend-container", method: :post, url: search_index_path  do |f|
+      .search__select-box
+        %i.fa.fa-chevron-down.item-form__select-icon
+        %select{name: "q[sorts]", id: "sortSelect"}
+          %option{value: ""} 並び替え
+          %option{value: "price asc"}
+            価格の安い順
+          %option{value: "price desc"}
+            価格の高い順
+          %option{value: "created_at asc"}
+            出品の古い順
+          %option{value: "created_at desc"}
+            出品の新しい順
+
+      .search__select-detailedSearch
+        %h3 詳細検索
+        .form-group
+          %label
+            %i.icon
+            %span キーワードを追加する
+          = f.search_field :name_cont_all, class: "detailInput", plaseholder: "例）値下げ"
+        .form-group
+          %label
+            %i.fa.fa-chevron-down
+            %span カテゴリーを選択する
+          .detailSelect
+            = select_tag 'q[category_id_cont_all][]', options_for_select(@category.all.collect {|c| [c.name, c.id]}), class: "item-form__select-box", id: "search_category_id", data: {parent_id: 0}, include_blank: "---"
+
+        .form-group
+          %label
+            %i.icon
+            %span ブランド名から検索
+          %input.detailInput{:name => "keyword", :placeholder => "未実装", :type => "text", :value => ""}/
+        .form-group
+          %label
+            %i.fa.fa-chevron-down
+            %span サイズを指定する
+          .detailSelect
+            %select.select-default{:name => ""}
+              %option{:value => ""} 未実装
+        .form-group
+          %label
+            %i.fa.fa-chevron-down.price-fa
+            %span 価格
+          .detailSelect
+            %select.select-default{:name => "q[price]"}
+              %option{:value => ""} すべて
+              %option{:value => "300-1000"}
+                300以上 ~ 1000未満
+              %option{:value => "1000-5000"}
+                1000以上 ~ 5000未満
+              %option{:value => "5000-10000"}
+                5000以上 ~ 10000未満
+              %option{:value => "10000-30000"}
+                10000以上 ~ 30000未満
+              %option{:value => "30000-50000"}
+                30000以上 ~ 50000未満
+              %option{:value => "50000"}
+                50000以上 ~
+
+            = f.number_field :price_gteq, class: "detailInput", placeholder: "¥ Min"
+            %span ~
+            = f.number_field :price_lt, class: "detailInput", placeholder: "¥ Max"
+
+        .form-group
+          %label
+            %i.icon
+            %span 商品の状態
+          .form-group__status
+            .checkbox
+              %input{:name => "", :type => "checkbox", :value => 0 }/
+              %i.icon-check
+              %label{:for => "condition_all"} すべて
+            - @conditions.each_with_index do |condition, i|
+              .checkbox
+                = f.check_box :condition_eq_any, { multiple: true }, i+1, nil
+                %i.icon-check
+                %label{:for => "condition_all"} #{condition}
+
+        .form-group
+          %label
+            %i.icon
+            %span 配送料の負担
+          .form-group__status
+            .checkbox
+              %input{:name => "", :type => "checkbox", :value => 0 }/
+              %i.icon-check
+              %label{:for => "condition_all"} すべて
+            - @postages.each_with_index do |postage, i|
+              .checkbox
+                = f.check_box :postage_eq_any, { multiple: true }, i+1, nil
+                %i.icon-check
+                %label{:for => "condition_all"} #{postage}
+        .form-group
+          %label
+            %i.icon
+            %span 販売状況
+          .form-group__status
+            .checkbox
+              %input{:name => "", :type => "checkbox", :value => 0 }/
+              %i.icon-check
+              %label{:for => "condition_all"} すべて
+            - @status.each_with_index do |status, i|
+              .checkbox
+                = f.check_box :status_eq_any, { multiple: true }, i+1, nil
+                %i.icon-check
+                %label{:for => "condition_all"} #{status}
+        .search__select-detailedSearch-end
+          .detail-reset
+            リセット
+          %button 完了
+
+
+  .result-content
+    - if @item.length != 0
+      %h2.result-content-h2 の検索結果
+      .result-content-number
+        #{@item.length}件の表示
+      .result-content__items
+        - @item.each do |item|
+          .result-content__box
+            = link_to item_path item.id do
+              .result-content__image
+                = image_tag item.images[0].image.url
+              .result-content__body
+                %h3.result-content-h3 #{item.name}
+                .result-content__num
+                  .result-content__price
+                    ¥ #{item.price}
+                  .result-content__like
+                    %i.fa.fa-heart-o
+                    %span 6
+    - else
+      該当する商品はありません

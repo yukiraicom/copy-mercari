@@ -110,7 +110,7 @@ $(function () {
 })
 
 $(function () {
-  $("form").on("submit", function (e) {
+  $(".inner__item-form").on("submit", function (e) {
     e.preventDefault();
     var formData = new FormData($(this)[0]);
     formData.delete("item[image][image][]")

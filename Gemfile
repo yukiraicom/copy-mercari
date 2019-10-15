@@ -68,3 +68,4 @@ gem 'rails-controller-testing'
 gem 'carrierwave'
 gem "gretel"
 gem 'payjp'
+gem 'ransack'
