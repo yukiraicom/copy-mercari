@@ -19,6 +19,9 @@ set :default_env, {
 }
 # secrets.yml用のシンボリックリンクを追加
 set :linked_files, %w{ config/secrets.yml }
+set :linked_dirs, %w{ app/assets/stylesheets/fontawesome-free-5.9.0-web}
+
+
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
