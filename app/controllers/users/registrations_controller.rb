@@ -37,16 +37,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def credit_create
-    @credit = Credit.new(
-      user_id: current_user.id,
-      card_number: credit_params[:card_number].to_i,
-      expiration_month: credit_params[:expiration_month].to_i,
-      expiration_year: credit_params[:expiration_year].to_i,
-      security_code: credit_params[:security_code].to_i
-    )
+    @credit = Credit.new(credit_params)
     if @credit.save
+      begin
+        token = Payjp::Token.create({
+          :card => {
+            :number => @credit.card_number,
+            :cvc => @credit.security_code,
+            :exp_month => @credit.expiration_month,
+            :exp_year => 2000 + @credit.expiration_year
+          }},
+          {
+            'X-Payjp-Direct-Token-Generate': 'true'
+          } 
+        ) #トークン作成 
+      rescue => e
+        @errors = e
+        @credit.delete
+        render :credit
+        return false
+      end
+      customer = Payjp::Customer.create(
+        description: 'test',
+        card: token.id
+      )
+      @credit.update(pay_id: token.id, customer_id: customer.id)
       redirect_to users_sign_up_fin_path
     else
+      @credit
       render :credit
     end
   end
@@ -81,7 +99,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
   
   def credit_params
-    params.require(:credit)
+    params.require(:credit).permit(:card_number, :expiration_month, :expiration_year, :security_code).merge(user_id: current_user.id)
   end
 
 end

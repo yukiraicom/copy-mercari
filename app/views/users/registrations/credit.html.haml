@@ -1,12 +1,15 @@
 .devise-content
   %h2 お支払い方法
-  - @credit.errors.full_messages.each do |e|
-    %p #{e}
-  = form_for(@credit, url: users_sign_up3_path(@credit)) do |f|
+  - if @credit.errors.full_messages.present?
+    - @credit.errors.full_messages.each do |e|
+      %p #{e}
+  - if @errors.present?
+    %p #{@errors}
+  = form_for(@credit, url: users_sign_up3_path, method: :post) do |f|
     .field
       = f.label :カード番号
       %br/
-      = f.text_field :card_number, placeholder: "半角数字のみ", autofocus: true
+      = f.text_field :card_number, placeholder: "半角数字のみ", value: "4242424242424242", autofocus: true
       %br/
       = f.label :有効期限
       %br/
@@ -24,7 +27,7 @@
       ["12", 12]]
       月
       %br/
-      = f.select :expiration_year, [["18", 18], ["19", 19]] 
+      = f.select :expiration_year, [["19", 19], ["20", 20] , ["21", 21] , ["22", 22]] 
       年
       %br/
       = f.label :セキュリティコード
