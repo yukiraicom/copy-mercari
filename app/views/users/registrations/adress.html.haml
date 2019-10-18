@@ -45,3 +45,5 @@
       = f.text_field :tel
     .actions
       =f.submit "次へ進む"
+    = link_to destroy_user_session_path, method: "delete", class: "container--mypage__content__logout__link" do
+      新規登録をやめる
