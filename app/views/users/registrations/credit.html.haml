@@ -27,12 +27,12 @@
       ["12", 12]]
       月
       %br/
-      = f.select :expiration_year, [["19", 19], ["20", 20] , ["21", 21] , ["22", 22]] 
+      = f.select :expiration_year, [["20", 20] , ["21", 21] , ["22", 22]] 
       年
       %br/
       = f.label :セキュリティコード
       %br/
-      = f.text_field :security_code, placeholder: "カード背面４桁もしくは３桁の番号"
+      = f.text_field :security_code, placeholder: "カード背面４桁もしくは３桁の番号", value: "123"
 
     .actions
       =f.submit "次へ進む"
