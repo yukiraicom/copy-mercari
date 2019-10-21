@@ -14,27 +14,34 @@
   end
 
   def create
-    credit = Credit.new(credit_params)
-    if credit.save
-      token = Payjp::Token.create({
-        :card => {
-          :number => credit.card_number,
-          :cvc => credit.security_code,
-          :exp_month => credit.expiration_month,
-          :exp_year => 2000 + credit.expiration_year
-        }},
-        {
-          'X-Payjp-Direct-Token-Generate': 'true'
-        } 
-      ) #トークン作成 
+    @credit = Credit.new(credit_params)
+    if @credit.save
+      begin
+        token = Payjp::Token.create({
+          :card => {
+            :number => @credit.card_number,
+            :cvc => @credit.security_code,
+            :exp_month => @credit.expiration_month,
+            :exp_year => 2000 + @credit.expiration_year
+          }},
+          {
+            'X-Payjp-Direct-Token-Generate': 'true'
+          } 
+        ) #トークン作成 
+      rescue => e
+        @credit_error = e
+        @credit.delete
+        render :new
+        return false
+      end
       customer = Payjp::Customer.create(
         description: 'test',
         card: token.id
       )
-      credit.update(pay_id: token.id, customer_id: customer.id)
+      @credit.update(pay_id: token.id, customer_id: customer.id)
       redirect_to credits_path
     else
-      @credit_error = credit.errors.full_messages
+      @credit_error = @credit.errors.full_messages
       render :new
     end
   end
