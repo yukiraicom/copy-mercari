@@ -128,6 +128,7 @@ $(function () {
         url: "/items",
         data: formData,
         dataType: "json",
+        cache    : false,
         processData: false,
         contentType: false
       })
