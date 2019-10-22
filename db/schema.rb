@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20191012171245) do
     t.string "city", null: false
     t.string "street", null: false
     t.string "building_name", null: false
-    t.integer "tel", null: false
+    t.string "tel", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_adresses_on_user_id"
