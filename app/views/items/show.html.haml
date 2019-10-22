@@ -60,8 +60,9 @@
     %span.item-box__price--box__price ¥ #{@item.price}
     %span.item-box__price--box__tax  (税込)
     %span.item-box__price--box-shipping 送料込み
-  = link_to new_purchase_path(@item.id), class: "item-box__buy--btn" do
-    購入画面に進む
+  - if current_user.id != @item.user_id
+    = link_to new_purchase_path(@item.id), class: "item-box__buy--btn" do
+      購入画面に進む
   .item-box__description
     %p.item-box__description--p
       #{@item.description}
